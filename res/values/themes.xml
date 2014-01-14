@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <!-- The default system theme. This is the theme used for activities
+         that have not explicitly set their own theme.
+         
+         <p>You can count on this being a dark
+         background with light text on top, but should try to make no
+         other assumptions about its appearance. In particular, the text
+         inside of widgets using this theme may be completely different,
+         with the widget container being a light color and the text on top
+         of it a dark color.
+    -->
+    <style name="Theme">        
+    
+        <!-- Window attributes -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Activity</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustUnspecified</item>
+ 
+    </style>
+    
+    <!-- Variant of the default (dark) theme with no title bar -->
+    <style name="Theme.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
+    <!-- Variant of the default (dark) theme that has no title bar and fills the entire screen -->
+    <style name="Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
+    <!-- Theme for a light background with dark text on top.  Set your activity
+         to this theme if you would like such an appearance.  As with the
+         default theme, you should try to assume little more than that the
+         background will be a light color. -->
+     
+    <!-- Special variation on the default theme that ensures the background is
+         completely black.  This is useful for things like image viewers and
+         media players.   If you want the normal (dark background) theme
+         do <em>not</em> use this, use {@link #Theme}. -->
+    <style name="Theme.Black">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/black</item>
+    </style>
+    
+    <!-- Variant of the black theme with no title bar -->
+    <style name="Theme.Black.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Variant of the black theme that has no title bar and fills the entire screen -->
+    <style name="Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
+    <!-- Default theme for windows that want to have the user's selected wallpaper appear behind them.  -->
+    <style name="Theme.Wallpaper">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowShowWallpaper">true</item>
+    </style>
+
+    <!-- Variant of the translucent theme with no title bar -->
+    <style name="Theme.Wallpaper.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Variant of the translucent theme that has no title bar and fills the entire screen -->
+    <style name="Theme.Wallpaper.NoTitleBar.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- Theme for a wallpaper's setting activity that is designed to be on top of a dark background. -->
+    <style name="Theme.WallpaperSettings">
+        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+    
+    <!-- Style to apply on top of a wallpaper settings theme when it is being
+         shown on top of the real wallpaper -->
+    <style name="ActiveWallpaperSettings">
+    </style>
+    
+    <!-- Style to apply on top of a wallpaper settings theme when it is being
+         shown on top of the real wallpaper -->
+    <style name="PreviewWallpaperSettings">
+    </style>
+    
+    <!-- Default theme for translucent activities, that is windows that allow you
+         to see through them to the windows behind.  This sets up the translucent
+         flag and appropriate animations for your windows.  -->
+    <style name="Theme.Translucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Note that we use the base animation style here (that is no
+             animations) because we really have no idea how this kind of
+             activity will be used. -->
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+    <!-- Variant of the translucent theme with no title bar -->
+    <style name="Theme.Translucent.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- Variant of the translucent theme that has no title bar and fills the entire screen -->
+    <style name="Theme.Translucent.NoTitleBar.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    
+    <!-- Default theme for activities that don't actually display a UI; that
+         is, they finish themselves before being resumed.  -->
+    <style name="Theme.NoDisplay">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowNoDisplay">true</item>
+    </style>
+
+    <!-- Default dark theme for panel windows.  This removes all extraneous
+         window decorations, so you basically have an empty rectangle in which
+         to place your content.  It makes the window floating, with a transparent
+         background, and turns off dimming behind the window. -->
+    <style name="Theme.Panel">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+</resources>

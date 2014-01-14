@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2014 SpeedOps
+    All rights reserved.
+ 
+    SpeedOps is not responsible for any use or misuse of this product.
+    In using this software you agree to hold harmless SpeedOps and any other
+    contributors to this project from any damages or liabilities which might result 
+    from its use.
+ 
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+    NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <LinearLayout
+        android:id="@+id/genericListItemsTitleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:fillViewport="true">
+        
+        <TextView
+            android:id="@+id/genericListItemsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/list_title_text_size"
+            android:textIsSelectable="false"/>
+    </LinearLayout>
+    
+    <!-- line spacer -->
+    <View
+        android:id="@+id/genericListItemsTitleDivider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_line_spacer_height"
+        android:background="@drawable/black_gradient">
+    </View>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fillViewport="true">
+        
+        <ListView 
+            android:id="@android:id/list"
+            android:fastScrollEnabled="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:footerDividersEnabled="true"/>
+    </LinearLayout>
+</LinearLayout>

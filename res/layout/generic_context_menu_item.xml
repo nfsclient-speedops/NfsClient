@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2014 SpeedOps
+    All rights reserved.
+ 
+    SpeedOps is not responsible for any use or misuse of this product.
+    In using this software you agree to hold harmless SpeedOps and any other
+    contributors to this project from any damages or liabilities which might result 
+    from its use.
+ 
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+    NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/genericContextMenuItemName"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:includeFontPadding="false"
+    android:textIsSelectable="false"
+    android:gravity="center"
+    android:singleLine="true"
+    android:ellipsize="marquee"
+    android:textSize="@dimen/primary_name_text_size"
+    android:typeface="monospace"/>

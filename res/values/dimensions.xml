@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2014 SpeedOps
+    All rights reserved.
+ 
+    SpeedOps is not responsible for any use or misuse of this product.
+    In using this software you agree to hold harmless SpeedOps and any other
+    contributors to this project from any damages or liabilities which might result 
+    from its use.
+ 
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+    NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<resources>
+    <dimen
+        name="dialog_title_text_size">20sp
+    </dimen>
+    
+    <dimen
+        name="dialog_message_text_size">18sp
+    </dimen>
+    
+    <dimen
+        name="list_title_text_size_empty">18sp
+    </dimen>
+    
+    <dimen
+        name="list_title_text_size">18sp
+    </dimen>
+    
+    <dimen
+        name="primary_name_text_size">18sp
+    </dimen>
+    
+    <dimen
+        name="button_text_size">18sp
+    </dimen>
+    
+    <dimen
+        name="secondary_name_text_size">16sp
+    </dimen>
+    
+    <dimen
+        name="default_text_size">16sp
+    </dimen>
+    
+    <dimen
+        name="default_text_size_small">14sp
+    </dimen>
+    
+    <dimen
+        name="default_line_spacer_height">1dp
+    </dimen>
+    
+    <dimen
+        name="default_title_line_spacer_height">2dp
+    </dimen>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- File created by the Android Action Bar Style Generator
+
+     Copyright (C) 2012 readyState Software Ltd
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <style name="Theme.gray" parent="@style/Theme.Sherlock">
+        <item name="actionBarItemBackground">@drawable/abs_selectable_background_gray</item>
+        <item name="popupMenuStyle">@style/gray_PopupMenu</item>
+        <item name="dropDownListViewStyle">@style/gray_DropDownListView</item>
+        <item name="actionBarTabStyle">@style/gray_ActionBarTabStyle</item>
+        <item name="actionDropDownStyle">@style/gray_DropDownNav</item>
+        <item name="actionBarStyle">@style/gray_transparent_ActionBar</item>
+<!--
+        <item name="android:actionBarItemBackground">@drawable/abs_selectable_background_gray</item>
+        <item name="android:popupMenuStyle">@style/gray_PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/gray_DropDownListView</item>
+        <item name="android:actionBarTabStyle">@style/gray_ActionBarTabStyle</item>
+        <item name="android:actionDropDownStyle">@style/gray_DropDownNav</item>
+        <item name="android:actionBarStyle">@style/gray_transparent_ActionBar</item>
+        <item name="android:panelBackground">@drawable/abs_menu_hardkey_panel_gray</item>
+-->
+    </style>
+
+    <style name="gray_solid_ActionBar" parent="@style/Widget.Sherlock.ActionBar.Solid">
+        <item name="background">@drawable/abs_ab_solid_gray</item>
+        <item name="backgroundStacked">@drawable/abs_ab_stacked_solid_gray</item>
+        <item name="backgroundSplit">@drawable/abs_ab_bottom_solid_gray</item>
+        <item name="progressBarStyle">@style/gray_ProgressBar</item>
+
+        <item name="android:background">@drawable/abs_ab_solid_gray</item>
+<!--
+        <item name="android:backgroundStacked">@drawable/abs_ab_stacked_solid_gray</item>
+        <item name="android:backgroundSplit">@drawable/abs_ab_bottom_solid_gray</item>
+-->
+        <item name="android:progressBarStyle">@style/gray_ProgressBar</item>
+    </style>
+
+    <style name="gray_transparent_ActionBar" parent="@style/Widget.Sherlock.ActionBar">
+        <item name="background">@drawable/abs_ab_transparent_gray</item>
+        <item name="progressBarStyle">@style/gray_ProgressBar</item>
+        
+        <item name="android:background">@drawable/abs_ab_transparent_gray</item>
+        <item name="android:progressBarStyle">@style/gray_ProgressBar</item>
+    </style>
+	
+    <style name="gray_PopupMenu" parent="@style/Widget.Sherlock.ListPopupWindow">	
+        <item name="android:popupBackground">@drawable/abs_menu_dropdown_panel_gray</item>	
+    </style>
+	
+    <style name="gray_DropDownListView" parent="@style/Widget.Sherlock.ListView.DropDown">
+        <item name="android:listSelector">@drawable/abs_selectable_background_gray</item>
+    </style>
+
+    <style name="gray_ActionBarTabStyle" parent="@style/Widget.Sherlock.ActionBar.TabView">
+        <item name="background">@drawable/abs_tab_indicator_ab_gray</item>
+
+        <item name="android:background">@drawable/abs_tab_indicator_ab_gray</item>
+    </style>
+	
+    <style name="gray_DropDownNav" parent="@style/Widget.Sherlock.Spinner.DropDown.ActionBar">
+        <item name="background">@drawable/abs_spinner_background_ab_gray</item>
+
+        <item name="android:background">@drawable/abs_spinner_background_ab_gray</item>
+        <item name="android:popupBackground">@drawable/abs_menu_dropdown_panel_gray</item>
+        <item name="android:dropDownSelector">@drawable/abs_selectable_background_gray</item>
+    </style>
+    
+    <style name="gray_ProgressBar" parent="@style/Widget.Sherlock.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/abs_progress_horizontal_gray</item>
+    </style>
+
+</resources>

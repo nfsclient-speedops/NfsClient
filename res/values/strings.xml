@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2014 SpeedOps
+    All rights reserved.
+ 
+    SpeedOps is not responsible for any use or misuse of this product.
+    In using this software you agree to hold harmless SpeedOps and any other
+    contributors to this project from any damages or liabilities which might result 
+    from its use.
+ 
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+    NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<resources>
+    <string name="app_name">NfsClient</string>
+        
+    <!-- start app preference strings -->
+    <string name="appPreferencesSettingsTitle">NFS Client settings</string>
+    
+    <string name="appPreferencesNfsServersTitle">NFS Servers</string>
+    <string name="appPreferencesNfsServersSummary">Manage the access to NFS servers</string>
+    <string name="appPreferencesNfsServersKey">appPreferencesNfsServersKey</string>
+    
+    <string name="appPreferencesAboutTitle">About</string>
+    <string name="appPreferencesAboutSummary"></string>
+    <string name="appPreferencesAboutKey">appPreferencesAboutKey</string>
+    <!-- end app preference strings -->
+
+    <!-- start NFS servers activity strings -->
+    <string name="noServers">"\n\n\nTo add a server, tap the above <b>New server icon</b>"
+    </string>
+    <plurals name="listAllServers">
+        <item quantity="one">1 server</item>
+        <item quantity="other">%d servers</item>
+    </plurals>
+    
+    <string name="newServer">New server</string>
+    <!-- end NFS servers activity strings -->
+    
+    <!-- start NFS server preferences activity strings -->
+    <string name="serverPreferencesScreenTitle">Edit a server</string>
+    
+    <string name="serverPreferencesSettingsTitle">%s server</string>
+    
+    <string name="serverPreferencesServerInternetAddressTitle">Server Internet address</string>
+    <string name="serverPreferencesServerInternetAddressSummary">Set the server Internet address</string>
+    <string name="serverPreferencesServerInternetAddressKey">serverPreferencesInternetAddressKey</string>
+    <string name="serverPreferencesServerInternetAddressDialogTitle">Server Internet address</string>
+    <string name="serverPreferencesServerInternetAddressDialogMessage">Dot notation, i.e. n.n.n.n</string>
+    
+    <string name="serverPreferencesServerHostNameTitle">Server host name</string>
+    <string name="serverPreferencesServerHostNameSummary">Set the server host name</string>
+    <string name="serverPreferencesServerHostNameKey">serverPreferencesHostNameKey</string>
+    <string name="serverPreferencesServerHostNameDialogTitle">Server host name</string>
+    
+    <string name="serverPreferencesServerUserNameTitle">User name</string>
+    <string name="serverPreferencesServerUserNameSummary">Set the user name</string>
+    <string name="serverPreferencesServerUserNameKey">serverPreferencesUserNameKey</string>
+    <string name="serverPreferencesServerUserNameDialogTitle">User name</string>
+    
+    <string name="serverPreferencesServerPasswordTitle">Password</string>
+    <string name="serverPreferencesServerPasswordSummary">Set the user password</string>
+    <string name="serverPreferencesServerPasswordKey">serverPreferencesPasswordKey</string>
+    <string name="serverPreferencesServerPasswordDialogTitle">Password</string>
+    
+    <string name="serverPreferencesServerExportDirectoriesTitle">Server export directories</string>
+    <string name="serverPreferencesServerExportDirectoriesSummary">Set the server export directories</string>
+    <string name="serverPreferencesServerExportDirectoriesKey">serverPreferencesExportDirectoriesKey</string>
+    <string name="serverPreferencesServerExportDirectoriesDialogTitle">Server export directories</string>
+    <string name="serverExportDirectoriesAddButton">Add directory</string>
+    <string name="serverExportDirectoriesRemoveButton">Remove directory</string>
+    
+    <!-- end NFS server preferences activity strings -->
+        
+    <!-- start file import selection dialog strings -->
+    <string name="genericFileImportSelectionDialogLocationSelectionLabel">Select a location</string>
+    <string name="genericFileImportSelectionDialogFileLocationLabel">Import a file</string>
+    <string name="genericFileImportSelectionDialogFilenameLabel">Filename</string>
+    <string name="genericFileImportSelectionDialogDeviceStorageLabel">Import from device</string>
+    <string name="genericFileImportSelectionDialogCloudStorageLabel">Import from cloud</string>
+    <string name="genericFileImportSelectionDialogDropboxDefaultLocation">Default account</string>
+    <string name="genericFileImportSelectionDialogLoginLocations">Login accounts</string>
+    <!-- end file selection import dialog strings -->
+    
+    <!-- start mime file types strings -->
+    <string name="mime_file_text">application/octet-stream</string>
+       
+    <!-- Image types -->
+	<string name="file_extension_png">.png</string>
+	<string name="file_extension_gif">.gif</string>
+	<string name="file_extension_jpg">.jpg</string>
+	<string name="file_extension_jpeg">.jpeg</string>
+	<string name="file_extension_bmp">.bmp</string>
+	<string name="mime_file_png">image/png</string>
+    <string name="mime_file_gif">image/gif</string>
+    <string name="mime_file_jpg">image/jpg</string>
+    <string name="mime_file_jpeg">image/jpeg</string>
+    <string name="mime_file_bmp">"image/bmp</string>
+	    
+    <!-- Audio types -->
+	<string name="file_extension_mp3">.mp3</string>
+	<string name="file_extension_wav">.wav</string>
+	<string name="file_extension_ogg">.ogg</string>
+	<string name="file_extension_mid">.mid</string>
+	<string name="file_extension_midi">.midi</string>
+	<string name="file_extension_amr">.amr</string>
+	<string name="file_extension_aac">.aac</string>
+	<string name="mime_file_mp3">audio/mp3</string>
+	<string name="mime_file_wav">audio/wav</string>
+	<string name="mime_file_ogg">audio/x-ogg</string>
+	<string name="mime_file_mid">audio/mid</string>
+	<string name="mime_file_midi">audio/midi</string>
+	<string name="mime_file_amr">audio/AMR</string>
+	<string name="mime_file_aac">audio/x-aac</string>
+	
+    <!-- Video types -->
+	<string name="file_extension_mpeg">.mpeg</string>
+	<string name="file_extension_3gp">.3gp</string>
+	<string name="mime_file_mpeg">video/mpeg</string>
+	<string name="mime_file_3gpp">video/3gpp</string>
+	
+    <!-- Package types -->
+	<string name="file_extension_jar">.jar</string>
+	<string name="file_extension_zip">.zip</string>
+	<string name="file_extension_rar">.rar</string>
+	<string name="file_extension_gz">.gz</string>
+	<string name="mime_file_jar">application/java-archive</string>
+	<string name="mime_file_zip">application/zip</string>
+	<string name="mime_file_rar">application/x-rar-compressed</string>
+	<string name="mime_file_gzip">application/gzip</string>
+	
+    <!-- Web browser types -->
+	<string name="file_extension_htm">.htm</string>
+	<string name="file_extension_html">.html</string>
+	<string name="file_extension_php">.php</string>
+	<string name="mime_file_htm">text/html</string>
+	<string name="mime_file_html">text/html</string>
+	<string name="mime_file_php">text/php</string>
+	
+    <!-- Text types -->
+	<string name="file_extension_txt">.txt</string>
+	<string name="file_extension_xml">.xml</string>
+	<string name="mime_file_txt">text/plain</string>
+	<string name="mime_file_csv">text/csv</string>
+	<string name="mime_file_xml">text/xml</string>
+		    
+	<!-- Android specific -->
+	<string name="file_extension_apk">.apk</string>
+	<string name="mime_file_apk">application/vnd.android.package-archive</string>
+	
+    <!-- end mime file types strings -->
+    
+    <!-- start filemanager strings -->
+    <!-- Automatically filled in by Launchpad: -->
+	
+    <!-- Short explanation of the application. Max. 80 characters. -->
+
+    <string name="about_comments">Manage files on the SD card.</string>  
+
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="file_manager_app_name">OI File Manager</string>
+    <string name="menu_new_folder">New Folder</string>
+
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_rename">Rename</string>
+    <string name="menu_send">Send</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_move">Move</string>
+    <string name="menu_copy">Copy</string>
+    <string name="menu_include_in_media_scan">Include in media scan</string>
+    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="create_new_folder">Create new folder</string>
+    <string name="folder_name">Folder name</string>
+    <string name="file_name">Folder name</string>
+    <string name="this_folder_is_empty">This folder is empty.</string>
+    <string name="really_delete">Do you really want to delete %s?</string>
+    <string name="file_deleted">File deleted.</string>
+    <string name="folder_deleted">Folder deleted.</string>
+    <string name="file_renamed">File renamed.</string>
+    <string name="folder_renamed">Folder renamed.</string>
+    <string name="file_moved">File moved.</string>
+    <string name="folder_moved">Folder moved.</string>
+    <string name="file_copied">File copied.</string>
+    <string name="move_title">Select folder to move to</string>
+    <string name="move_button">Move here</string>
+    <string name="copy_title">Select folder to copy to</string>
+    <string name="copy_button">Copy here</string>
+	<string name="deleting_files">Deleting files&#8230;</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Move</string>
+    <string name="copy_button_multiselect">Copy</string>
+    <string name="delete_button_multiselect">Delete</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Copy of %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="media_scan_included">This folder will be included in the next media scan.</string>
+    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="error_creating_new_folder">Could not create new folder.</string>
+    <string name="error_deleting_file">Could not delete file.</string>
+    <string name="error_deleting_folder">Could not delete folder \"%s\".</string>
+    <string name="error_renaming_file">Could not rename file.</string>
+    <string name="error_renaming_folder">Could not rename folder.</string>
+    <string name="error_moving_file">Could not move file.</string>
+    <string name="error_moving_folder">Could not move folder.</string>
+    <string name="error_copying_file">Could not copy file.</string>
+    <string name="error_file_does_not_exists">File does not exist.</string>
+    <string name="error_deleting_child_file">Could not delete child file \"%s\".</string>
+    <string name="error_generic">An error occurred: </string>
+    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="send_not_available">No application available for sending.</string>
+    <string name="application_not_available">Application not available</string>
+    
+	<!-- Preferences -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Settings</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Advanced features</string>
+	<string name="preference_mediascan_title">Exclude from media scan</string>
+    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <!-- end filemanager strings -->
+    
+    <string name="ign_error_report_email_subject">New error report: %s</string>
+    <string name="ign_error_report_send_button">Send Email</string>
+    <string name="ign_progress_dialog_title">Loading&#8230;</string>
+    <string name="ign_progress_dialog_msg">Please wait a moment</string>
+  
+    <!-- start app preferences info activity strings -->
+    <string name="infoPreferencesTitle">Info</string>
+    <string name="infoPreferencesInstructionsTitle">Instructions</string>
+    <string name="infoPreferencesInstructionsSummary">A brief set of instructions</string>
+    <string name="infoPreferencesInstructionsKey">infoPreferencesInstructionsKey</string>
+    
+    <string name="infoPreferencesAboutTitle">About</string>
+    <string name="infoPreferencesAboutKey">infoPreferencesAboutKey</string>    
+
+    <string name="appPreferencesInfoTitle">NFS Client settings</string>
+    <!-- end preferences strings -->
+    
+    <!-- start utility strings -->
+    <string name="genericProgressDialogLoading">Loading&#8230;</string>
+    <string name="genericProgressDialogImporting">Importing&#8230;</string>
+    <string name="genericProgressDialogExporting">Exporting&#8230;</string>
+    <string name="genericProgressDialogConnecting">Connecting&#8230;</string>
+    <string name="genericProgressDialogConnected">Connected</string>
+    <string name="genericProgressDialogRefreshingAccount">Refreshing the account&#8230;</string>
+    <string name="genericProgressDialogDeletingAccount">Deleting the account&#8230;</string>
+    <string name="genericProgressDialogSearchingTitle">Searching&#8230;</string>
+    <string name="genericProgressDialogSearchingMessage">Seaching for group import files on the SD card&#8230;</string>
+    <string name="genericProgressDialogApplyingPreferences">Applying&#8230;</string>
+    <string name="genericInvalidEntryMessage">Invalid entry</string>
+    <string name="genericUriFilenamePrefix">file://</string>
+    <string name="genericDeleteConfirmation">Confirm the delete</string>
+    <string name="genericConfirm">Confirm</string>
+    <string name="genericConfirmSelection">Confirm the selection</string>
+    <string name="genericConfirmation">Confirmation</string>
+    <string name="genericConnectionError">Connection error</string>
+    <string name="genericError">Error</string>
+    <string name="genericOptionsMenuInfo">Info</string>
+    <string name="genericImageContentDescription">Image</string>
+    <string name="genericInvalidAccount">Invalid account</string>
+    <string name="genericInvalidOperation">Invalid operation</string>
+    <string name="genericInvalidRequest">Invalid request</string>
+    <string name="genericInvalidSetting">Invalid setting</string>
+    <string name="genericFileFormatText">Text (*.txt)</string>
+    <string name="genericFileFormatTextSuffix">txt</string>
+    <string name="genericFilenameLabel">Filename</string>
+    <string name="genericPasswordLabel">Password:</string>
+    <string name="genericPasswordConfirmLabel">Confirm:</string>
+    <string name="genericPasswordShowPasswordLabel">Show/Hide:</string>
+    <string name="genericPasswordShowLabel">Show</string>
+    <string name="genericPasswordHideLabel">Hide</string>
+    <string name="genericProviderLabel">Provider:</string>
+    <string name="genericAccountLabel">Account:</string>
+    <string name="genericLocationLabel">Location:</string>
+    <string name="genericFilenameLabel">Filename:</string>
+    <string name="genericSelectAll">"Select all  "</string>
+    <string name="genericUnselectAll">Unselect all</string>
+    <string name="genericEmptyString"></string>
+    <string name="genericApplyButtonLabel">Apply</string>
+    <string name="genericExportButtonLabel">Export</string>
+    <string name="genericCancelButtonLabel">Cancel</string>
+    <string name="genericCreateButtonLabel">Create</string>
+    <string name="genericEditButtonLabel">Edit</string>
+    <string name="genericExitButtonLabel">Exit</string>
+    <string name="genericSaveButtonLabel">Save</string>
+    <string name="genericDoneButtonLabel">Done</string>
+    <string name="genericOkButtonLabel">OK</string>
+    <string name="genericYesButtonLabel">Yes</string>
+    <string name="genericNoButtonLabel">No</string>
+    <string name="genericBackButtonLabel">Back</string>
+    <string name="genericCloseButtonLabel">Close</string>
+    <string name="genericDeleteButtonLabel">Delete</string>
+    <string name="genericExitButtonLabel">Exit</string>
+    <string name="genericHomeButtonLabel">Home</string>
+    <string name="genericRefreshButtonLabel">Refresh</string>
+    <string name="genericConnectButtonLabel">Connect</string>
+    <string name="genericDisconnectButtonLabel">Disconnect</string>
+    <string name="genericFileButtonLabel">File</string>
+    <string name="genericFilesButtonLabel">Files</string>
+    <string name="genericSelectButtonLabel">Select</string>
+    <string name="genericRetryButtonLabel">Retry</string>
+    <string name="genericAcceptButtonLabel">Accept</string>
+    <string name="genericDeclineButtonLabel">Decline</string>
+    <!-- end utility strings -->
+    
+    <!-- start about preferences activity strings -->
+    <string name="aboutPreferencesTitle">About</string>
+    <string name="aboutPreferencesCopyrightsTitle">Copyrights</string>
+    <string name="aboutPreferencesCopyrightsKey">aboutPreferencesCopyrightsKey</string>
+    <string name="aboutPreferencesEulaTitleShort">EULA</string>
+    <string name="aboutPreferencesEulaTitleLong">End User License Agreement</string>
+    <string name="aboutPreferencesEulaDefaultExportFilename">eula</string>
+    <!-- end about preferences activity strings -->
+ 
+    <!-- start about strings -->
+    <string name="aboutTitle">About</string>
+    <string name="copyrightsTitle">Copyrights</string>
+    <string name="copyrightsText">"\n\
+NFS Client
+Version: 1.0
+
+Copyright \u00A9 2014 by SpeedOps.
+All rights reserved.
+
+Report bugs to:
+nfsclient@speedops.com
+
+ActionBarSherlock: Copyright &#169; of 2012 Jake Wharton\n
+Android: Copyright &#169; of Google, Inc.\n
+eu.medsea: Copyright &#169; 2007-2008 Medsea Business Solutions S.L.\n
+OpenIntents: Copyright &#169; 2008-2012 OpenIntents.org\n
+
+"</string>
+    <string name="appCopyrightNoticeWithWarrantyDisclaimerText">\
+"Copyright \u00A9 2014 by SpeedOps\n\
+All rights reserved.\n\n\
+SpeedOps is not responsible for any misuse of this product.  In using this software you \
+agree to hold harmless SpeedOps and any other contributors to this project from any damages or \
+liabilities which might result from its use.\n\n\ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, \n\ 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \n\ 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"</string>
+ 
+    <!-- end copyright strings -->
+    
+    <string name="fileFormatSpinnerLabel">File format:</string>
+    <string-array name="file_export_format_options">
+        <item>Text (*.txt)</item>
+    </string-array>
+    <!-- end utility strings -->
+    
+        <!-- start eula strings -->
+    <string name="eulaText">\
+<b>End User License Agreement</b>\n\n
+By installing or using this application from SpeedOps (here after referred to as \
+\"The Licensor\"), you agree to the following terms and conditions.\n\n
+1. USE OF APPLICATION\n
+a. The Licensor grants you the non-exclusive and non-transferable license to install and use this \
+application.\n
+b. You agree that you are solely responsible for (and that The Licensor has no responsibility to you \
+or to any third party for) your use of this application, any breach of your obligations under the \
+Terms and Conditions, and for the consequences of any such breach.\n\n
+2. U.S. GOVERNMENT RESTRICTED RIGHTS\n
+This application, related materials and documentation have been developed entirely with private \
+funds. If the user of this application is an agency, department, employee, or other entity of the \
+United States Government, the use, duplication, reproduction, release, modification, disclosure, or \
+transfer of this application, including technical data or manuals, is restricted by the terms, \
+conditions and covenants contained in these Terms and Conditions. In accordance with Federal \
+Acquisition Regulation 12.212 for civilian agencies and Defense Federal Acquisition Regulation \
+Supplement 227.7202 for military agencies, use of the Application is further restricted by these \
+Terms and Conditions.\n\n
+3. EXPORT RESTRICTIONS\n
+This application may be subject to export controls or restrictions by the United States or other \
+countries or territories. You agree to comply with all applicable U.S. and international export laws \
+and regulations. These laws include restrictions on destinations, end users, and end use.\n\n
+4. TERMINATION\n
+These terms and conditions will continue to apply until terminated by either you or The Licensor as \
+set forth below. You may terminate these terms and conditions at any time by permanently deleting \
+this application from your mobile device in its entirety.\n\n
+5. INDEMNITY\n
+To the maximum extent permitted by law, you agree to defend, indemnify and hold harmless The \
+Licensor, its affiliates and their respective directors, officers, employees and agents from and \
+against any and all claims, actions, suits or proceedings, as well as any and all losses, \
+liabilities, damages, costs and expenses (including reasonable attorneys fees) arising out of or \
+accruing from your use of the Application, including your downloading, installation, or use of this \
+application, or your violation of these Terms and Conditions.\n\n
+6. DISCLAIMER OF WARRANTIES\n
+a. YOU EXPRESSLY UNDERSTAND AND AGREE THAT YOUR USE OF THIS APPLICATION IS AT YOUR SOLE DISCRETION \
+AND RISK AND THAT THIS APPLICATION IS PROVIDED AS IS AND AS AVAILABLE WITHOUT WARRANTY OF ANY KIND.
+b. YOU ARE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR MOBILE DEVICE, OR OTHER DEVICE, OR LOSS OF DATA \
+THAT RESULTS FROM SUCH USE.\n
+c. THE LICENSOR FURTHER EXPRESSLY DISCLAIMS ALL WARRANTIES AND CONDITIONS OF ANY KIND, WHETHER \
+EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES AND CONDITIONS OF \
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT, WITH RESPECT TO THIS \
+APPLICATION.\n
+d. THIS APPLICATION IS NOT INTENDED FOR USE IN THE OPERATION OF NUCLEAR FACILITIES, LIFE SUPPORT \
+SYSTEMS, EMERGENCY COMMUNICATIONS, AIRCRAFT NAVIGATION OR COMMUNICATION SYSTEMS, AIR TRAFFIC \
+CONTROL SYSTEMS, OR ANY OTHER ACTIVITIES IN WHICH THE FAILURE OF THIS APPLICATION COULD LEAD TO \
+DEATH, PERSONAL INJURY, OR SEVERE PHYSICAL OR ENVIRONMENTAL DAMAGE.\n\n
+7. LIMITATION OF LIABILITY\n
+YOU EXPRESSLY UNDERSTAND AND AGREE THAT THE LICENSOR, ITS SUBSIDIARIES AND AFFILIATES, AND ITS \
+LICENSORS ARE NOT LIABLE TO YOU UNDER ANY THEORY OF LIABILITY FOR ANY DIRECT, INDIRECT, INCIDENTAL, \
+SPECIAL CONSEQUENTIAL OR EXEMPLARY DAMAGES THAT MAY BE INCURRED BY YOU THROUGH YOUR USE OF THIS \
+APPLICATION, INCLUDING ANY LOSS OF DATA OR DAMAGE TO YOUR MOBILE DEVICE, WHETHER OR NOT THE LICENSOR \
+OR ITS REPRESENTATIVES HAVE BEEN ADVISED OF OR SHOULD HAVE BEEN AWARE OF THE POSSIBILITY OF ANY SUCH \
+LOSSES ARISING.\n\n
+8. GOVERNING LAW\n
+Any action related to this Agreement will be governed by California law and controlling U.S. federal \
+law.  No choice of law rules of any jurisdiction will apply.\n\n
+9. SEVERABILITY\n
+If any provision of this Agreement is held to be unenforceable, this Agreement will remain in effect \
+with the provision omitted, unless omission would frustrate the intent of the parties, in which case \
+this Agreement will immediately terminate.\n\n
+10. INTEGRATION\n
+This Agreement is the entire agreement between you and the Licensor relating to its subject matter. \
+It supersedes all prior or contemporaneous oral or written communications, proposals, \
+representations and warranties and prevails over any conflicting or additional terms of any quote, \
+order, acknowledgment, or other communication between the parties relating to its subject matter \
+during the term of this Agreement. No modification of this Agreement will be binding, unless in \
+writing and signed by an authorized representative of each party.</string>
+    <!-- end eula strings -->
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2014 SpeedOps
+    All rights reserved.
+ 
+    SpeedOps is not responsible for any use or misuse of this product.
+    In using this software you agree to hold harmless SpeedOps and any other
+    contributors to this project from any damages or liabilities which might result 
+    from its use.
+ 
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+    NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<resources>
+    <color name="test">#afafaf</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_overlay">#66000000</color>
+    
+    <!-- blacks -->
+    <color name="blackThemeTextColorPrimary">@color/white</color>
+    <color name="blackThemeTextColorSecondary">@color/white</color>
+    <color name="black">#000000</color>
+    <color name="darkGray">#a9a9a9</color>
+    <color name="darkSlateGray">#2f4f4f</color>
+    <color name="dimGray">#696969</color>
+    <color name="gray">#bebebe</color>
+    <color name="gray2">#808080</color>
+    <color name="lightGray">#d3d3d3</color>
+    <color name="lightSlateGray">#778899</color>
+    <color name="slateGray">#708090</color>
+ 
+    <!-- whites -->
+    <color name="whiteThemeTextColorPrimary">@color/black</color>
+    <color name="whiteThemeTextColorSecondary">@color/black</color>
+    <color name="antiqueWhite">#faebd7</color>
+    <color name="floralWhite">#fffaf0</color>
+    <color name="ghostWhite">#f8f8ff</color>
+    <color name="ivory">#fffff0</color>
+    <color name="linen">#faf0e6</color>
+    <color name="lineWhite">#666666</color>
+    <color name="mediumOrchid">#ba55d3</color>
+    <color name="navajoWhite">#ffdead</color>
+    <color name="orchid">#da70d6</color>
+    <color name="seashell">#fff5ee</color>
+    <color name="silver">#c0c0c0</color>
+    <color name="snow">#fffafa</color>
+    <color name="snow4">#8b8989</color>
+    <color name="white">#ffffff</color>
+    <color name="whiteSmoke">#f5f5f5</color>    
+
+</resources>
