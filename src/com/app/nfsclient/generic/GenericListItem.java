@@ -35,8 +35,6 @@ public abstract class GenericListItem implements Comparable<GenericListItem> {
         TAG + ".activityResultFileSelectionFileNameKey";
     
     public static final int ACTIVITY_RESULT_FILE_SELECTION_PROVIDER_MASK = 0xff00;    
-	public static final int ACTIVITY_RESULT_FILE_SELECTION_PROVIDER_DROPBOX_CHOOSER = 0x0100;
-	public static final int ACTIVITY_RESULT_FILE_SELECTION_PROVIDER_DROPBOX_LOGIN = 0x0200;
 	public static final int ACTIVITY_RESULT_FILE_SELECTION_PROVIDER_LOCAL_STORAGE = 0x0300;
 	
 	public static final int ACTIVITY_RESULT_FILE_SELECTION_TYPE_ALL_MASK = 0xff;
@@ -48,6 +46,7 @@ public abstract class GenericListItem implements Comparable<GenericListItem> {
 	
     public static final int ACTIVITY_RESULT_LIST_REFRESH = 1;
 	public static final int ACTIVITY_RESULT_ACCOUNT_CONNECT = 2;
+	public static final int ACTIVITY_RESULT_ACCOUNT_EDIT = 3;
 	
     public static final int DIALOG_LOADING = 0;
     public static final int DIALOG_DELETING = 1;
@@ -60,13 +59,11 @@ public abstract class GenericListItem implements Comparable<GenericListItem> {
     public static final long ITEM_TYPE_GENERIC_LIST_ITEM_OBJECT_ID = 0;
     public static final String ITEM_TYPE_GENERIC_LIST_ITEM_STRING = "GenericListItemString";
     public static final long ITEM_TYPE_GENERIC_LIST_ITEM_STRING_ID = 1;
-    public static final String ITEM_TYPE_SERVER = "Server";
-    public static final long ITEM_TYPE_SERVER_ID = 2;
-    public static final String ITEM_TYPE_STORAGE_PROVIDER_LOCAL = "Android";
-    public static final long ITEM_TYPE_STORAGE_PROVIDER_LOCAL_ID = 3;
-    public static final String ITEM_TYPE_STORAGE_LOCATION_LOCAL = "Local storage";
-    public static final long ITEM_TYPE_STORAGE_LOCATION_LOCAL_ID = 4;
-    
+    public static final String ITEM_TYPE_NFS_SERVER = "NFS server";
+    public static final long ITEM_TYPE_NFS_SERVER_ID = 2;
+    public static final String ITEM_TYPE_LOCAL_STORAGE = "Local storage";
+    public static final long ITEM_TYPE_LOCAL_STORAGE_ID = 3;
+     
     public static final int GENERIC_LIST_ITEM_BUTTON_LEFT = 0;
     public static final int GENERIC_LIST_ITEM_BUTTON_RIGHT = 1;
     
@@ -74,9 +71,8 @@ public abstract class GenericListItem implements Comparable<GenericListItem> {
 	public static enum ItemType {	    
         GenericListItemObject(ITEM_TYPE_GENERIC_LIST_ITEM_OBJECT, ITEM_TYPE_GENERIC_LIST_ITEM_OBJECT_ID),
         GenericListItemString(ITEM_TYPE_GENERIC_LIST_ITEM_STRING, ITEM_TYPE_GENERIC_LIST_ITEM_STRING_ID),
-		Group(ITEM_TYPE_SERVER, ITEM_TYPE_SERVER_ID),
-		StorageProviderLocal(ITEM_TYPE_STORAGE_PROVIDER_LOCAL, ITEM_TYPE_STORAGE_PROVIDER_LOCAL_ID),
-		StorageLocationLocal(ITEM_TYPE_STORAGE_LOCATION_LOCAL, ITEM_TYPE_STORAGE_LOCATION_LOCAL_ID)
+		Server(ITEM_TYPE_NFS_SERVER, ITEM_TYPE_NFS_SERVER_ID),
+		StorageLocal(ITEM_TYPE_LOCAL_STORAGE, ITEM_TYPE_LOCAL_STORAGE_ID)
 		;
         
         private final String name;
@@ -128,24 +124,32 @@ public abstract class GenericListItem implements Comparable<GenericListItem> {
 	
 	protected String itemType = Utils.EMPTY_STRING;
 	protected String userId = Utils.EMPTY_STRING;
-    protected String primaryName = Utils.EMPTY_STRING;
-    protected String secondaryName = Utils.EMPTY_STRING;
-        
+    protected String first = Utils.EMPTY_STRING;
+    protected String second = Utils.EMPTY_STRING;
+    protected String third = Utils.EMPTY_STRING;
+    protected String fourth = Utils.EMPTY_STRING;
+    protected String fifth = Utils.EMPTY_STRING;
+    protected String sixth = Utils.EMPTY_STRING;
+    protected String seventh = Utils.EMPTY_STRING;
+    protected String eigth = Utils.EMPTY_STRING;
+    protected String ninth = Utils.EMPTY_STRING;
+    protected String tenth = Utils.EMPTY_STRING;
+    
     public static final long RESERVED_CONTAINER_ID = Integer.MAX_VALUE;
             
     protected Boolean storageEnable = false;
     protected String storageName = Utils.EMPTY_STRING;
     protected String storageType = Utils.EMPTY_STRING;
     
-    public GenericListItem(String itemType, String primaryName, String secondaryName) {
+    public GenericListItem(String itemType, String first, String second) {
     	this.itemType = itemType;
-    	this.primaryName = primaryName;
-    	this.secondaryName = secondaryName;
+    	this.first = first;
+    	this.second = second;
     }
 	
     @Override
     public String toString() {
-    	return primaryName;
+    	return first;
     }
     
 	public String userIdGet() {
@@ -155,18 +159,74 @@ public abstract class GenericListItem implements Comparable<GenericListItem> {
 		this.userId = userId;
 	}
 	
-	public String primaryNameGet() {
-		return primaryName;
+	public String firstGet() {
+		return first;
 	}
-	public void primaryNameSet(String primaryName) {		
-		this.primaryName = primaryName;
+	public void firstSet(String first) {		
+		this.first = first;
 	}
 	
-	public String secondaryNameGet() {
-		return secondaryName;
+	public String secondGet() {
+		return second;
 	}
-	public void secondaryNameSet(String secondaryName) {		
-		this.secondaryName = secondaryName;
+	public void secondSet(String second) {		
+		this.second = second;
+	}
+	
+	public String thirdGet() {
+		return third;
+	}
+	public void third(String third) {		
+		this.third = third;
+	}
+	
+	public String fourthGet() {
+		return fourth;
+	}
+	public void fourthSet(String fourth) {		
+		this.fourth = fourth;
+	}
+	
+	public String fifthGet() {
+		return fifth;
+	}
+	public void fifthSet(String fifth) {		
+		this.fifth = fifth;
+	}
+	
+	public String sixthGet() {
+		return sixth;
+	}
+	public void sixthSet(String sixth) {		
+		this.sixth = sixth;
+	}
+	
+	public String seventhGet() {
+		return seventh;
+	}
+	public void seventhSet(String seventh) {		
+		this.seventh = seventh;
+	}
+	
+	public String eigthGet() {
+		return eigth;
+	}
+	public void eigthSet(String eigth) {		
+		this.eigth = eigth;
+	}
+	
+	public String ninthGet() {
+		return ninth;
+	}
+	public void ninthSet(String ninth) {		
+		this.ninth = ninth;
+	}
+	
+	public String tenthGet() {
+		return tenth;
+	}
+	public void tenthSet(String tenth) {		
+		this.tenth = tenth;
 	}
 	
 	public String itemTypeGet() {
@@ -214,6 +274,6 @@ public abstract class GenericListItem implements Comparable<GenericListItem> {
 	}
 	
 	public int compareTo(GenericListItem item) {
-		return primaryName.toLowerCase().compareTo(item.primaryName.toLowerCase());
+		return first.toLowerCase().compareTo(item.first.toLowerCase());
 	}
 }

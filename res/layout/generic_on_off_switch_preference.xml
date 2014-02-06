@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2014 SpeedOps
+    All rights reserved.
+ 
+    SpeedOps is not responsible for any use or misuse of this product.
+    In using this software you agree to hold harmless SpeedOps and any other
+    contributors to this project from any damages or liabilities which might result 
+    from its use.
+ 
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+    NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:genericOnOffSwitchAuto="http://schemas.android.com/apk/res-auto"
+    xmlns:genericOnOffSwitchNfsClient="http://schemas.android.com/apk/com.app.nfsclient"
+    android:id="@+id/genericOnOffSwitchPreferenceLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:gravity="center_vertical"
+    android:paddingRight="?android:attr/scrollbarSize">
+ 
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="1">
+ 
+        <TextView
+            android:id="@+android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textIsSelectable="false"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"/>
+ 
+        <TextView
+            android:id="@+android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@android:id/title"
+            android:layout_alignLeft="@android:id/title"
+            android:textIsSelectable="false"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:maxLines="2"
+            android:textColor="?android:attr/textColorSecondary"/>
+        
+        <LinearLayout
+            android:id="@+id/genericOnOffSwitchValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@android:id/summary"
+            android:layout_alignLeft="@android:id/title"
+            android:layout_marginBottom="4dip"
+            android:layout_marginRight="8dip"
+            android:orientation="vertical"/>
+    </RelativeLayout>
+
+    <com.app.nfsclient.generic.GenericOnOffSwitch
+        android:id="@+id/genericOnOffSwitch"
+        style="@style/genericOnOffSwitchStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        genericOnOffSwitchAuto:textOff="@string/genericSwitchOff"
+        genericOnOffSwitchAuto:textOn="@string/genericSwitchOn"
+        genericOnOffSwitchAuto:textOnThumb="false"
+        genericOnOffSwitchNfsClient:thumb="@drawable/switch_thumb"
+        genericOnOffSwitchNfsClient:track="@drawable/switch_track"/>
+
+    <LinearLayout
+        android:id="@+android:id/widget_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"/>
+</LinearLayout>

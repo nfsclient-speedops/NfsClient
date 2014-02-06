@@ -111,36 +111,36 @@ public final class R {
 		public static final int fileChooserTitleText = 0x7f060017;
 	}
 	public static final class drawable {
-		public static final int common_bar_light_gray_bottom = 0x7f0200a4;
-		public static final int common_btn_green_disabled = 0x7f0200a5;
-		public static final int common_btn_green_focused = 0x7f0200a6;
-		public static final int common_btn_green_normal = 0x7f0200a7;
-		public static final int common_btn_green_pressed = 0x7f0200a8;
-		public static final int common_btn_light_gray_disabled = 0x7f0200a9;
-		public static final int common_btn_light_gray_focused = 0x7f0200aa;
-		public static final int common_btn_light_gray_normal = 0x7f0200ab;
-		public static final int common_btn_light_gray_pressed = 0x7f0200ac;
-		public static final int common_button_green = 0x7f0200ad;
-		public static final int common_button_light_gray = 0x7f0200ae;
-		public static final int ic_launcher = 0x7f0200bb;
-		public static final int icon_new = 0x7f0200c8;
-		public static final int tab_dropbox = 0x7f0200cd;
-		public static final int tab_dropbox_inactive = 0x7f0200ce;
+		public static final int common_bar_light_gray_bottom = 0x7f0200a7;
+		public static final int common_btn_green_disabled = 0x7f0200a8;
+		public static final int common_btn_green_focused = 0x7f0200a9;
+		public static final int common_btn_green_normal = 0x7f0200aa;
+		public static final int common_btn_green_pressed = 0x7f0200ab;
+		public static final int common_btn_light_gray_disabled = 0x7f0200ac;
+		public static final int common_btn_light_gray_focused = 0x7f0200ad;
+		public static final int common_btn_light_gray_normal = 0x7f0200ae;
+		public static final int common_btn_light_gray_pressed = 0x7f0200af;
+		public static final int common_button_green = 0x7f0200b0;
+		public static final int common_button_light_gray = 0x7f0200b1;
+		public static final int ic_launcher = 0x7f0200c0;
+		public static final int icon_new = 0x7f0200cd;
+		public static final int tab_dropbox = 0x7f0200da;
+		public static final int tab_dropbox_inactive = 0x7f0200db;
 	}
 	public static final class id {
-		public static final int dbx_bottom_bar = 0x7f0b003c;
-		public static final int dbx_bottom_bar_cancel_button = 0x7f0b003d;
-		public static final int dbx_bottom_bar_ok_button = 0x7f0b003e;
-		public static final int dbx_bottom_space = 0x7f0b003b;
-		public static final int dbx_button_bar = 0x7f0b0033;
-		public static final int dbx_button_container = 0x7f0b0032;
-		public static final int dbx_icon = 0x7f0b0038;
-		public static final int dbx_install_main = 0x7f0b0039;
-		public static final int dbx_install_sub = 0x7f0b003a;
-		public static final int dbx_install_title = 0x7f0b0035;
-		public static final int dbx_main_container = 0x7f0b0034;
-		public static final int dbx_separator = 0x7f0b0036;
-		public static final int dbx_top_space = 0x7f0b0037;
+		public static final int dbx_bottom_bar = 0x7f0b0043;
+		public static final int dbx_bottom_bar_cancel_button = 0x7f0b0044;
+		public static final int dbx_bottom_bar_ok_button = 0x7f0b0045;
+		public static final int dbx_bottom_space = 0x7f0b0042;
+		public static final int dbx_button_bar = 0x7f0b003a;
+		public static final int dbx_button_container = 0x7f0b0039;
+		public static final int dbx_icon = 0x7f0b003f;
+		public static final int dbx_install_main = 0x7f0b0040;
+		public static final int dbx_install_sub = 0x7f0b0041;
+		public static final int dbx_install_title = 0x7f0b003c;
+		public static final int dbx_main_container = 0x7f0b003b;
+		public static final int dbx_separator = 0x7f0b003d;
+		public static final int dbx_top_space = 0x7f0b003e;
 	}
 	public static final class integer {
 		public static final int dbx_max_action_buttons = 0x7f070000;

@@ -89,7 +89,7 @@ public class App extends GenericPreferencesActivity {
     }
     
     @Override
-    protected void init() {    	
+    protected void init() {
     	// display the eula
         new Eula(this, startupHandler, EULA_ACCEPT, EULA_DECLINE, this).show();
     }

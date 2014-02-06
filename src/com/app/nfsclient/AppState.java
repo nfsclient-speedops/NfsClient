@@ -354,7 +354,7 @@ public class AppState {
 		return size;
 	}
     public static void serversAdd(Context context, Server server) {
-    	logX(TAG, String.format("serversAdd 1: server = %s", server.primaryNameGet()));
+    	logX(TAG, String.format("serversAdd 1: server = %s", server.firstGet()));
 
     	ServersDatabaseAdapter database = new ServersDatabaseAdapter(context);
         database.insert(server);
@@ -400,8 +400,8 @@ public class AppState {
     	logX(TAG, "storageProvidersGet");
     	
     	GenericListItemList providers = new GenericListItemList();
-    	providers.add(GenericListItem.ITEM_TYPE_STORAGE_PROVIDER_LOCAL,
-    		GenericListItem.ITEM_TYPE_STORAGE_PROVIDER_LOCAL);
+    	providers.add(GenericListItem.ITEM_TYPE_LOCAL_STORAGE,
+    		GenericListItem.ITEM_TYPE_LOCAL_STORAGE);
     	for (GenericListItem cloudProvider : cloudStorageProvidersGet(context))
    			providers.add(cloudProvider);
     	
@@ -412,13 +412,13 @@ public class AppState {
     	logX(TAG, String.format("storageProviderLocationsGetByProvider: provider = %s", provider));
 
     	GenericListItemList list = new GenericListItemList();
-    	if (provider.equalsIgnoreCase(GenericListItem.ITEM_TYPE_STORAGE_PROVIDER_LOCAL)) {
-    		list.add(GenericListItem.ITEM_TYPE_STORAGE_LOCATION_LOCAL);
+    	if (provider.equalsIgnoreCase(GenericListItem.ITEM_TYPE_LOCAL_STORAGE)) {
+    		list.add(GenericListItem.ITEM_TYPE_LOCAL_STORAGE);
     	} else {
     		for (GenericListItem item : cloudStorageProvidersListGet(context)) {
     			GenericStorage account = (GenericStorage)item;
     			logX(TAG, String.format("storageProviderLocationsGetByProvider: item = %s, type = %s",
-    					account.primaryNameGet(), account.storageTypeGet().toString()));
+    					account.firstGet(), account.storageTypeGet().toString()));
 
     			if (account.storageTypeGet().toString().equalsIgnoreCase(provider))
     				list.add(item);
@@ -486,7 +486,7 @@ public class AppState {
     	for (GenericListItem item : cloudStorageProvidersListGet(context)) {
     		GenericStorage ca = (GenericStorage)item;
     		
-    		if (ca.primaryNameGet().equalsIgnoreCase(name) &&
+    		if (ca.firstGet().equalsIgnoreCase(name) &&
     			ca.storageTypeGet().toString().equalsIgnoreCase(type)) {
     			account = item;
     			break;
@@ -503,7 +503,7 @@ public class AppState {
     	for (int i = 0; i < cloudStorageProvidersListGet(context).size(); i++) {
     		GenericStorage account = (GenericStorage)cloudStorageProvidersGet(context, i);
 
-    		if (account.primaryNameGet().equalsIgnoreCase(name) &&
+    		if (account.firstGet().equalsIgnoreCase(name) &&
     			account.storageTypeGet().toString().equalsIgnoreCase(type)) {
     			index = i;
     			break;
@@ -522,7 +522,7 @@ public class AppState {
     	    for (int i = 0; i < list.size(); i++) {
     	    	GenericStorage account = (GenericStorage)list.get(i);
     	    	
-    	    	entries[i] = String.format("%s %s", account.primaryNameGet(),
+    	    	entries[i] = String.format("%s %s", account.firstGet(),
     	    		account.storageTypeGet().toString());;
     	    }
     	}

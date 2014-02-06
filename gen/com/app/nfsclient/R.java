@@ -167,6 +167,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
         public static final int background=0x7f010002;
+        /**  We need a mask drawable to mask the background, then draw the track 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int backgroundMask=0x7f010077;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
@@ -223,6 +228,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int dividerVertical=0x7f010038;
+        /**  drawablw to use when the switch is in the unchecked/"off" state. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int drawableOff=0x7f01006a;
+        /**  drawablw to use when the switch is in the checked/"on" state. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int drawableOn=0x7f010069;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -251,6 +266,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int expandActivityOverflowButtonDrawable=0x7f01005f;
+        /**  Default style for the Switch widget. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int genericOnOffSwitchStyleAttr=0x7f010080;
         /**  Default background for the menu header. 
          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -344,6 +364,13 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int itemTextAppearance=0x7f010056;
+        /**  the track drawable will be drawn on top of these background. So if
+             these back grounds were to be visible, the track has to have transparency 
+ The background when left side of the switch is visible 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int leftBackground=0x7f010075;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -402,6 +429,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
+        public static final int onOffSwitch=0x7f010064;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>1</td><td> the switch moves only on the x-axis(horizontally) </td></tr>
+<tr><td><code>vertical</code></td><td>0</td><td> the switch moves only on the y-axis(vertically) </td></tr>
+</table>
+         */
+        public static final int orientation=0x7f010074;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
         public static final int popupMenuStyle=0x7f01003d;
         /**  Whether space should be reserved in layout when an icon is missing. 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
@@ -428,6 +470,15 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int progressBarStyle=0x7f010052;
+        /**  if the switch should operate like iOS UISwitch 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int pushStyle=0x7f01006b;
         /**  An optional query hint string to be displayed in the empty query field. 
          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
@@ -437,6 +488,11 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int queryHint=0x7f010061;
+        /**  The background when right side of the switch is visible 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int rightBackground=0x7f010076;
         /**  SearchView AutoCompleteTextView style 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -524,6 +580,53 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int subtitleTextStyle=0x7f010001;
+        /**  Minimum height for the switch component 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int switchMinHeight=0x7f010072;
+        /**  Minimum width for the switch component 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int switchMinWidth=0x7f010071;
+        /**  Minimum space between the switch and caption text 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int switchPadding=0x7f010073;
+        /**  TextAppearance style for text displayed on the switch thumb. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int switchTextAppearanceAttrib=0x7f010070;
+        /**  Present the text in ALL CAPS. This may use a small-caps form when available. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textAllCaps=0x7f01007f;
         /**  Text color, typeface, size, and style for the text inside of a popup menu. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -554,6 +657,46 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int textAppearanceSmallPopupMenu=0x7f01001d;
+        /**  Text color. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColor=0x7f010078;
+        /**  Color of the text selection highlight. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColorHighlight=0x7f01007c;
+        /**  Color of the hint text. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColorHint=0x7f01007d;
+        /**  Color of the links. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColorLink=0x7f01007e;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -588,6 +731,78 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
         public static final int textColorSearchUrl=0x7f01002e;
+        /**  Text to use when the switch is in the unchecked/"off" state. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         */
+        public static final int textOff=0x7f010068;
+        /**  Text to use when the switch is in the checked/"on" state. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         */
+        public static final int textOn=0x7f010067;
+        /**  if text should be drawn on the Thumb or On the track. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textOnThumb=0x7f01006c;
+        /**  Size of the text. Recommended dimension type for text is "sp" for scaled-pixels (example: 15sp). 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textSize=0x7f010079;
+        /**  Style (bold, italic, bolditalic) for the text. 
+         <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td></td></tr>
+<tr><td><code>bold</code></td><td>1</td><td></td></tr>
+<tr><td><code>italic</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int textStyle=0x7f01007a;
+        /**  Drawable to use as the "thumb" that switches back and forth. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int thumb=0x7f010065;
+        /**  if the thumb should be allowed to move more beyond the switch boundaries 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int thumbExtraMovement=0x7f01006d;
+        /**  Amount of padding on either side of text within the switch thumb. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int thumbTextPadding=0x7f01006e;
         /**  Specifies title text used for navigationMode="normal" 
          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
@@ -601,6 +816,38 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int titleTextStyle=0x7f010000;
+        /**  Drawable to use as the "track" that the switch thumb slides within. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int track=0x7f010066;
+        /**  Amount of padding on either side of text within the switch track. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int trackTextPadding=0x7f01006f;
+        /**  Typeface (normal, sans, serif, monospace) for the text. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td></td></tr>
+<tr><td><code>sans</code></td><td>1</td><td></td></tr>
+<tr><td><code>serif</code></td><td>2</td><td></td></tr>
+<tr><td><code>monospace</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int typeface=0x7f01007b;
         /**  Default vertical divider between menu items. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1201,218 +1448,244 @@ containing a value of this type.
         public static final int abs_tab_unselected_pressed_gray=0x7f02009f;
         public static final int actionbarsherlock_logo=0x7f0200a0;
         public static final int android_robot=0x7f0200a1;
-        public static final int black_gradient=0x7f0200a2;
-        public static final int black_white_gradient=0x7f0200a3;
-        public static final int common_bar_light_gray_bottom=0x7f0200a4;
-        public static final int common_btn_green_disabled=0x7f0200a5;
-        public static final int common_btn_green_focused=0x7f0200a6;
-        public static final int common_btn_green_normal=0x7f0200a7;
-        public static final int common_btn_green_pressed=0x7f0200a8;
-        public static final int common_btn_light_gray_disabled=0x7f0200a9;
-        public static final int common_btn_light_gray_focused=0x7f0200aa;
-        public static final int common_btn_light_gray_normal=0x7f0200ab;
-        public static final int common_btn_light_gray_pressed=0x7f0200ac;
-        public static final int common_button_green=0x7f0200ad;
-        public static final int common_button_light_gray=0x7f0200ae;
-        public static final int dropbox_default_image=0x7f0200af;
-        public static final int dropbox_default_image_small=0x7f0200b0;
-        public static final int folder=0x7f0200b1;
-        public static final int generic_selection_background_blue=0x7f0200b2;
-        public static final int generic_selection_background_gray=0x7f0200b3;
-        public static final int gray_gradient=0x7f0200b4;
-        public static final int ic_add=0x7f0200b5;
-        public static final int ic_browse_folder=0x7f0200b6;
-        public static final int ic_camera=0x7f0200b7;
-        public static final int ic_contact=0x7f0200b8;
-        public static final int ic_export=0x7f0200b9;
-        public static final int ic_import_export=0x7f0200ba;
-        public static final int ic_launcher=0x7f0200bb;
-        public static final int ic_launcher_folder=0x7f0200bc;
-        public static final int ic_launcher_folder_open=0x7f0200bd;
-        public static final int ic_launcher_home=0x7f0200be;
-        public static final int ic_launcher_home_small=0x7f0200bf;
-        public static final int ic_menu_back_small=0x7f0200c0;
-        public static final int ic_menu_forward_small=0x7f0200c1;
-        public static final int ic_menu_info=0x7f0200c2;
-        public static final int ic_menu_multiselect=0x7f0200c3;
-        public static final int ic_menu_remove_field_holo_light=0x7f0200c4;
-        public static final int ic_revert=0x7f0200c5;
-        public static final int ic_trash=0x7f0200c6;
-        public static final int icon_file=0x7f0200c7;
-        public static final int icon_new=0x7f0200c8;
-        public static final int icon_sdcard=0x7f0200c9;
-        public static final int icon_sdcard_small=0x7f0200ca;
-        public static final int openintents_logo=0x7f0200cb;
-        public static final int page=0x7f0200cc;
-        public static final int tab_dropbox=0x7f0200cd;
-        public static final int tab_dropbox_inactive=0x7f0200ce;
-        public static final int track_bg=0x7f0200cf;
-        public static final int track_bg_black=0x7f0200d0;
-        public static final int track_bg_white=0x7f0200d1;
-        public static final int track_default=0x7f0200d2;
-        public static final int track_default_black=0x7f0200d3;
-        public static final int track_default_white=0x7f0200d4;
-        public static final int track_disable=0x7f0200d5;
+        public static final int arrow_button64x49=0x7f0200a2;
+        public static final int arrow_button72x72=0x7f0200a3;
+        public static final int black_gradient=0x7f0200a4;
+        public static final int black_white_gradient=0x7f0200a5;
+        public static final int check_on=0x7f0200a6;
+        public static final int common_bar_light_gray_bottom=0x7f0200a7;
+        public static final int common_btn_green_disabled=0x7f0200a8;
+        public static final int common_btn_green_focused=0x7f0200a9;
+        public static final int common_btn_green_normal=0x7f0200aa;
+        public static final int common_btn_green_pressed=0x7f0200ab;
+        public static final int common_btn_light_gray_disabled=0x7f0200ac;
+        public static final int common_btn_light_gray_focused=0x7f0200ad;
+        public static final int common_btn_light_gray_normal=0x7f0200ae;
+        public static final int common_btn_light_gray_pressed=0x7f0200af;
+        public static final int common_button_green=0x7f0200b0;
+        public static final int common_button_light_gray=0x7f0200b1;
+        public static final int dropbox_default_image=0x7f0200b2;
+        public static final int dropbox_default_image_small=0x7f0200b3;
+        public static final int enable=0x7f0200b4;
+        public static final int folder=0x7f0200b5;
+        public static final int generic_selection_background_blue=0x7f0200b6;
+        public static final int generic_selection_background_gray=0x7f0200b7;
+        public static final int gray_gradient=0x7f0200b8;
+        public static final int ic_add=0x7f0200b9;
+        public static final int ic_browse_folder=0x7f0200ba;
+        public static final int ic_camera=0x7f0200bb;
+        public static final int ic_compose=0x7f0200bc;
+        public static final int ic_contact=0x7f0200bd;
+        public static final int ic_export=0x7f0200be;
+        public static final int ic_import_export=0x7f0200bf;
+        public static final int ic_launcher=0x7f0200c0;
+        public static final int ic_launcher_folder=0x7f0200c1;
+        public static final int ic_launcher_folder_open=0x7f0200c2;
+        public static final int ic_launcher_home=0x7f0200c3;
+        public static final int ic_launcher_home_small=0x7f0200c4;
+        public static final int ic_menu_back_small=0x7f0200c5;
+        public static final int ic_menu_forward_small=0x7f0200c6;
+        public static final int ic_menu_info=0x7f0200c7;
+        public static final int ic_menu_multiselect=0x7f0200c8;
+        public static final int ic_menu_remove_field_holo_light=0x7f0200c9;
+        public static final int ic_revert=0x7f0200ca;
+        public static final int ic_trash=0x7f0200cb;
+        public static final int icon_file=0x7f0200cc;
+        public static final int icon_new=0x7f0200cd;
+        public static final int icon_sdcard=0x7f0200ce;
+        public static final int icon_sdcard_small=0x7f0200cf;
+        public static final int openintents_logo=0x7f0200d0;
+        public static final int page=0x7f0200d1;
+        public static final int press=0x7f0200d2;
+        public static final int switch1_bg=0x7f0200d3;
+        public static final int switch_bg=0x7f0200d4;
+        public static final int switch_thumb=0x7f0200d5;
+        public static final int switch_thumb32x32=0x7f0200d6;
+        public static final int switch_thumb_arrow=0x7f0200d7;
+        public static final int switch_track=0x7f0200d8;
+        public static final int switch_track_green=0x7f0200d9;
+        public static final int tab_dropbox=0x7f0200da;
+        public static final int tab_dropbox_inactive=0x7f0200db;
+        public static final int track_bg=0x7f0200dc;
+        public static final int track_bg_black=0x7f0200dd;
+        public static final int track_bg_white=0x7f0200de;
+        public static final int track_default=0x7f0200df;
+        public static final int track_default_black=0x7f0200e0;
+        public static final int track_default_white=0x7f0200e1;
+        public static final int track_disable=0x7f0200e2;
     }
     public static final class id {
-        public static final int abs__action_bar=0x7f0b0020;
-        public static final int abs__action_bar_container=0x7f0b001f;
-        public static final int abs__action_bar_subtitle=0x7f0b0011;
-        public static final int abs__action_bar_title=0x7f0b0010;
-        public static final int abs__action_context_bar=0x7f0b0021;
+        public static final int abs__action_bar=0x7f0b0027;
+        public static final int abs__action_bar_container=0x7f0b0026;
+        public static final int abs__action_bar_subtitle=0x7f0b0018;
+        public static final int abs__action_bar_title=0x7f0b0017;
+        public static final int abs__action_context_bar=0x7f0b0028;
         public static final int abs__action_menu_divider=0x7f0b000c;
         public static final int abs__action_menu_presenter=0x7f0b000d;
-        public static final int abs__action_mode_bar=0x7f0b0025;
-        public static final int abs__action_mode_bar_stub=0x7f0b0024;
-        public static final int abs__action_mode_close_button=0x7f0b0014;
-        public static final int abs__activity_chooser_view_content=0x7f0b0015;
-        public static final int abs__checkbox=0x7f0b001c;
-        public static final int abs__content=0x7f0b0022;
-        public static final int abs__default_activity_button=0x7f0b0018;
-        public static final int abs__expand_activities_button=0x7f0b0016;
+        public static final int abs__action_mode_bar=0x7f0b002c;
+        public static final int abs__action_mode_bar_stub=0x7f0b002b;
+        public static final int abs__action_mode_close_button=0x7f0b001b;
+        public static final int abs__activity_chooser_view_content=0x7f0b001c;
+        public static final int abs__checkbox=0x7f0b0023;
+        public static final int abs__content=0x7f0b0029;
+        public static final int abs__default_activity_button=0x7f0b001f;
+        public static final int abs__expand_activities_button=0x7f0b001d;
         public static final int abs__home=0x7f0b000a;
-        public static final int abs__icon=0x7f0b001a;
-        public static final int abs__image=0x7f0b0017;
-        public static final int abs__imageButton=0x7f0b0012;
-        public static final int abs__list_item=0x7f0b0019;
+        public static final int abs__icon=0x7f0b0021;
+        public static final int abs__image=0x7f0b001e;
+        public static final int abs__imageButton=0x7f0b0019;
+        public static final int abs__list_item=0x7f0b0020;
         public static final int abs__progress_circular=0x7f0b000e;
         public static final int abs__progress_horizontal=0x7f0b000f;
-        public static final int abs__radio=0x7f0b001d;
-        public static final int abs__search_badge=0x7f0b0028;
-        public static final int abs__search_bar=0x7f0b0027;
-        public static final int abs__search_button=0x7f0b0029;
-        public static final int abs__search_close_btn=0x7f0b002e;
-        public static final int abs__search_edit_frame=0x7f0b002a;
-        public static final int abs__search_go_btn=0x7f0b0030;
-        public static final int abs__search_mag_icon=0x7f0b002b;
-        public static final int abs__search_plate=0x7f0b002c;
-        public static final int abs__search_src_text=0x7f0b002d;
-        public static final int abs__search_voice_btn=0x7f0b0031;
-        public static final int abs__shortcut=0x7f0b001e;
-        public static final int abs__split_action_bar=0x7f0b0023;
-        public static final int abs__submit_area=0x7f0b002f;
-        public static final int abs__textButton=0x7f0b0013;
-        public static final int abs__title=0x7f0b001b;
+        public static final int abs__radio=0x7f0b0024;
+        public static final int abs__search_badge=0x7f0b002f;
+        public static final int abs__search_bar=0x7f0b002e;
+        public static final int abs__search_button=0x7f0b0030;
+        public static final int abs__search_close_btn=0x7f0b0035;
+        public static final int abs__search_edit_frame=0x7f0b0031;
+        public static final int abs__search_go_btn=0x7f0b0037;
+        public static final int abs__search_mag_icon=0x7f0b0032;
+        public static final int abs__search_plate=0x7f0b0033;
+        public static final int abs__search_src_text=0x7f0b0034;
+        public static final int abs__search_voice_btn=0x7f0b0038;
+        public static final int abs__shortcut=0x7f0b0025;
+        public static final int abs__split_action_bar=0x7f0b002a;
+        public static final int abs__submit_area=0x7f0b0036;
+        public static final int abs__textButton=0x7f0b001a;
+        public static final int abs__title=0x7f0b0022;
         public static final int abs__up=0x7f0b000b;
-        public static final int action_multiselect=0x7f0b0050;
-        public static final int action_normal=0x7f0b004a;
-        public static final int background=0x7f0b009c;
-        public static final int button1=0x7f0b0099;
-        public static final int button2=0x7f0b009b;
-        public static final int button_copy=0x7f0b0052;
-        public static final int button_delete=0x7f0b0053;
-        public static final int button_directory_pick=0x7f0b0048;
-        public static final int button_move=0x7f0b0051;
-        public static final int button_pick=0x7f0b004c;
-        public static final int container1=0x7f0b0095;
-        public static final int container2=0x7f0b0098;
-        public static final int dbx_bottom_bar=0x7f0b003c;
-        public static final int dbx_bottom_bar_cancel_button=0x7f0b003d;
-        public static final int dbx_bottom_bar_ok_button=0x7f0b003e;
-        public static final int dbx_bottom_space=0x7f0b003b;
-        public static final int dbx_button_bar=0x7f0b0033;
-        public static final int dbx_button_container=0x7f0b0032;
-        public static final int dbx_icon=0x7f0b0038;
-        public static final int dbx_install_main=0x7f0b0039;
-        public static final int dbx_install_sub=0x7f0b003a;
-        public static final int dbx_install_title=0x7f0b0035;
-        public static final int dbx_main_container=0x7f0b0034;
-        public static final int dbx_separator=0x7f0b0036;
-        public static final int dbx_top_space=0x7f0b0037;
-        public static final int directory_buttons=0x7f0b0045;
-        public static final int directory_input=0x7f0b0046;
-        public static final int directory_layout=0x7f0b0044;
-        public static final int directory_text=0x7f0b0047;
+        public static final int action_multiselect=0x7f0b0057;
+        public static final int action_normal=0x7f0b0051;
+        public static final int background=0x7f0b00a9;
+        public static final int bold=0x7f0b0012;
+        public static final int button1=0x7f0b00a6;
+        public static final int button2=0x7f0b00a8;
+        public static final int button_copy=0x7f0b0059;
+        public static final int button_delete=0x7f0b005a;
+        public static final int button_directory_pick=0x7f0b004f;
+        public static final int button_move=0x7f0b0058;
+        public static final int button_pick=0x7f0b0053;
+        public static final int container1=0x7f0b00a2;
+        public static final int container2=0x7f0b00a5;
+        public static final int dbx_bottom_bar=0x7f0b0043;
+        public static final int dbx_bottom_bar_cancel_button=0x7f0b0044;
+        public static final int dbx_bottom_bar_ok_button=0x7f0b0045;
+        public static final int dbx_bottom_space=0x7f0b0042;
+        public static final int dbx_button_bar=0x7f0b003a;
+        public static final int dbx_button_container=0x7f0b0039;
+        public static final int dbx_icon=0x7f0b003f;
+        public static final int dbx_install_main=0x7f0b0040;
+        public static final int dbx_install_sub=0x7f0b0041;
+        public static final int dbx_install_title=0x7f0b003c;
+        public static final int dbx_main_container=0x7f0b003b;
+        public static final int dbx_separator=0x7f0b003d;
+        public static final int dbx_top_space=0x7f0b003e;
+        public static final int directory_buttons=0x7f0b004c;
+        public static final int directory_input=0x7f0b004d;
+        public static final int directory_layout=0x7f0b004b;
+        public static final int directory_text=0x7f0b004e;
         public static final int disableHome=0x7f0b0009;
-        public static final int edit_query=0x7f0b0026;
-        public static final int empty=0x7f0b0055;
-        public static final int empty_text=0x7f0b0056;
-        public static final int encryptionKeysKeyAlgorithmAndKeySize=0x7f0b0042;
-        public static final int encryptionKeysKeyTimestamp=0x7f0b0043;
-        public static final int encryptionKeysKeyType=0x7f0b0041;
-        public static final int file_format_label=0x7f0b004e;
-        public static final int file_format_layout=0x7f0b004d;
-        public static final int file_format_spinner=0x7f0b004f;
-        public static final int filename=0x7f0b004b;
-        public static final int filename_layout=0x7f0b0049;
-        public static final int foldername=0x7f0b0040;
-        public static final int foldernametext=0x7f0b003f;
-        public static final int genericAlertButtonDivider=0x7f0b005f;
-        public static final int genericAlertDialogButtonsLayout=0x7f0b0060;
-        public static final int genericAlertDialogLayout=0x7f0b005b;
-        public static final int genericAlertDialogLeftButton=0x7f0b0062;
-        public static final int genericAlertDialogMessage=0x7f0b005e;
-        public static final int genericAlertDialogNeutralButton=0x7f0b0061;
-        public static final int genericAlertDialogRightButton=0x7f0b0063;
-        public static final int genericAlertDialogTitle=0x7f0b005c;
-        public static final int genericAlertTitleDivider=0x7f0b005d;
-        public static final int genericContextMenuItemName=0x7f0b0064;
-        public static final int genericDialogBody=0x7f0b006a;
-        public static final int genericDialogButtonDivider=0x7f0b006b;
-        public static final int genericDialogContextMenuLayout=0x7f0b006e;
-        public static final int genericDialogContextMenuTitle=0x7f0b006f;
-        public static final int genericDialogContextMenuTitleDivider=0x7f0b0070;
-        public static final int genericDialogEditText=0x7f0b0071;
-        public static final int genericDialogFileImportExportLocationNameSpinner=0x7f0b0075;
-        public static final int genericDialogFileImportExportLocationNameSpinnerLabel=0x7f0b0074;
-        public static final int genericDialogFileImportExportLocationProviderSpinner=0x7f0b0073;
-        public static final int genericDialogFileImportExportLocationProviderSpinnerLabel=0x7f0b0072;
-        public static final int genericDialogLayout=0x7f0b0065;
-        public static final int genericDialogLeftButton=0x7f0b006c;
-        public static final int genericDialogMessage=0x7f0b0069;
-        public static final int genericDialogMessageLayout=0x7f0b0068;
-        public static final int genericDialogRightButton=0x7f0b006d;
-        public static final int genericDialogTitle=0x7f0b0066;
-        public static final int genericDialogTitleDivider=0x7f0b0067;
-        public static final int genericExpandableListAddButton=0x7f0b0079;
-        public static final int genericExpandableListButton=0x7f0b007b;
-        public static final int genericExpandableListContainer=0x7f0b0078;
-        public static final int genericExpandableListEditText=0x7f0b007a;
-        public static final int genericExpandableListLayout=0x7f0b0077;
-        public static final int genericExpandableListScrolView=0x7f0b0076;
-        public static final int genericListItemLayout=0x7f0b007e;
-        public static final int genericListItemLeftButton=0x7f0b007f;
-        public static final int genericListItemPrimaryName=0x7f0b007c;
-        public static final int genericListItemRightButton=0x7f0b0080;
-        public static final int genericListItemSecondaryName=0x7f0b007d;
-        public static final int genericListItemsLeftButton=0x7f0b0084;
-        public static final int genericListItemsRightButton=0x7f0b0085;
-        public static final int genericListItemsTitle=0x7f0b0082;
-        public static final int genericListItemsTitleDivider=0x7f0b0083;
-        public static final int genericListItemsTitleLayout=0x7f0b0081;
-        public static final int genericPreferenceContainer=0x7f0b0086;
-        public static final int genericPreferenceValueName=0x7f0b0087;
-        public static final int genericPreferencesButtonLayout=0x7f0b0088;
-        public static final int genericPreferencesLeftButton=0x7f0b0089;
-        public static final int genericPreferencesListLayout=0x7f0b008b;
-        public static final int genericPreferencesRightButton=0x7f0b008a;
-        public static final int genericTabsLayout=0x7f0b008c;
-        public static final int genericTabsViewPager=0x7f0b008d;
-        public static final int genericTextShowBody=0x7f0b0092;
-        public static final int genericTextShowLayout=0x7f0b008e;
-        public static final int genericTextShowScrollView=0x7f0b0091;
-        public static final int genericTextShowTitle=0x7f0b008f;
-        public static final int genericTextShowTitleDivider=0x7f0b0090;
-        public static final int genericWebView=0x7f0b0093;
+        public static final int edit_query=0x7f0b002d;
+        public static final int empty=0x7f0b005c;
+        public static final int empty_text=0x7f0b005d;
+        public static final int encryptionKeysKeyAlgorithmAndKeySize=0x7f0b0049;
+        public static final int encryptionKeysKeyTimestamp=0x7f0b004a;
+        public static final int encryptionKeysKeyType=0x7f0b0048;
+        public static final int file_format_label=0x7f0b0055;
+        public static final int file_format_layout=0x7f0b0054;
+        public static final int file_format_spinner=0x7f0b0056;
+        public static final int filename=0x7f0b0052;
+        public static final int filename_layout=0x7f0b0050;
+        public static final int foldername=0x7f0b0047;
+        public static final int foldernametext=0x7f0b0046;
+        public static final int genericAlertButtonDivider=0x7f0b0066;
+        public static final int genericAlertDialogButtonsLayout=0x7f0b0067;
+        public static final int genericAlertDialogLayout=0x7f0b0062;
+        public static final int genericAlertDialogLeftButton=0x7f0b0069;
+        public static final int genericAlertDialogMessage=0x7f0b0065;
+        public static final int genericAlertDialogNeutralButton=0x7f0b0068;
+        public static final int genericAlertDialogRightButton=0x7f0b006a;
+        public static final int genericAlertDialogTitle=0x7f0b0063;
+        public static final int genericAlertTitleDivider=0x7f0b0064;
+        public static final int genericContextMenuItemName=0x7f0b006b;
+        public static final int genericDialogBody=0x7f0b0071;
+        public static final int genericDialogButtonDivider=0x7f0b0072;
+        public static final int genericDialogContextMenuLayout=0x7f0b0075;
+        public static final int genericDialogContextMenuTitle=0x7f0b0076;
+        public static final int genericDialogContextMenuTitleDivider=0x7f0b0077;
+        public static final int genericDialogEditText=0x7f0b0078;
+        public static final int genericDialogFileImportExportLocationNameSpinner=0x7f0b007c;
+        public static final int genericDialogFileImportExportLocationNameSpinnerLabel=0x7f0b007b;
+        public static final int genericDialogFileImportExportLocationProviderSpinner=0x7f0b007a;
+        public static final int genericDialogFileImportExportLocationProviderSpinnerLabel=0x7f0b0079;
+        public static final int genericDialogLayout=0x7f0b006c;
+        public static final int genericDialogLeftButton=0x7f0b0073;
+        public static final int genericDialogMessage=0x7f0b0070;
+        public static final int genericDialogMessageLayout=0x7f0b006f;
+        public static final int genericDialogRightButton=0x7f0b0074;
+        public static final int genericDialogTitle=0x7f0b006d;
+        public static final int genericDialogTitleDivider=0x7f0b006e;
+        public static final int genericExpandableListAddButton=0x7f0b0086;
+        public static final int genericExpandableListButton=0x7f0b0088;
+        public static final int genericExpandableListContainer=0x7f0b0085;
+        public static final int genericExpandableListEditText=0x7f0b0087;
+        public static final int genericExpandableListLayout=0x7f0b0084;
+        public static final int genericExpandableListScrolView=0x7f0b0083;
+        public static final int genericListItemPrimaryName=0x7f0b0089;
+        public static final int genericListItemSecondaryName=0x7f0b008a;
+        public static final int genericListItemsLeftButton=0x7f0b008e;
+        public static final int genericListItemsRightButton=0x7f0b008f;
+        public static final int genericListItemsTitle=0x7f0b008c;
+        public static final int genericListItemsTitleDivider=0x7f0b008d;
+        public static final int genericListItemsTitleLayout=0x7f0b008b;
+        public static final int genericOnOffSwitch=0x7f0b0092;
+        public static final int genericOnOffSwitchPreferenceLayout=0x7f0b0090;
+        public static final int genericOnOffSwitchValue=0x7f0b0091;
+        public static final int genericPasswordDialogConfirm=0x7f0b0080;
+        public static final int genericPasswordDialogConfirmLabel=0x7f0b007f;
+        public static final int genericPasswordDialogHideShowSwitch=0x7f0b0082;
+        public static final int genericPasswordDialogPassword=0x7f0b007e;
+        public static final int genericPasswordDialogPasswordLabel=0x7f0b007d;
+        public static final int genericPasswordDialogShowPasswordLabel=0x7f0b0081;
+        public static final int genericPreferenceValue=0x7f0b0093;
+        public static final int genericPreferenceValueName=0x7f0b0094;
+        public static final int genericPreferencesButtonLayout=0x7f0b0095;
+        public static final int genericPreferencesLeftButton=0x7f0b0096;
+        public static final int genericPreferencesListLayout=0x7f0b0098;
+        public static final int genericPreferencesRightButton=0x7f0b0097;
+        public static final int genericTabsLayout=0x7f0b0099;
+        public static final int genericTabsViewPager=0x7f0b009a;
+        public static final int genericTextShowBody=0x7f0b009f;
+        public static final int genericTextShowLayout=0x7f0b009b;
+        public static final int genericTextShowScrollView=0x7f0b009e;
+        public static final int genericTextShowTitle=0x7f0b009c;
+        public static final int genericTextShowTitleDivider=0x7f0b009d;
+        public static final int genericWebView=0x7f0b00a0;
         public static final int homeAsUp=0x7f0b0006;
-        public static final int icon=0x7f0b0058;
-        public static final int imageview=0x7f0b0096;
-        public static final int info=0x7f0b005a;
+        public static final int horizontal=0x7f0b0010;
+        public static final int icon=0x7f0b005f;
+        public static final int imageview=0x7f0b00a3;
+        public static final int info=0x7f0b0061;
+        public static final int italic=0x7f0b0013;
         public static final int listMode=0x7f0b0002;
-        public static final int list_view_layout=0x7f0b0054;
+        public static final int list_view_layout=0x7f0b005b;
+        public static final int monospace=0x7f0b0016;
         public static final int normal=0x7f0b0001;
-        public static final int scan_progress=0x7f0b0057;
-        public static final int serverPreferencesSettingsTitle=0x7f0b009d;
-        public static final int serversListOptionsMenuNewServerItem=0x7f0b009e;
+        public static final int sans=0x7f0b0014;
+        public static final int scan_progress=0x7f0b005e;
+        public static final int serif=0x7f0b0015;
+        public static final int serverPreferencesSettingsTitle=0x7f0b00aa;
+        public static final int serversListOptionsMenuNewServerItem=0x7f0b00ab;
         public static final int showCustom=0x7f0b0008;
         public static final int showHome=0x7f0b0005;
         public static final int showTitle=0x7f0b0007;
-        public static final int space=0x7f0b009a;
+        public static final int space=0x7f0b00a7;
         public static final int tabMode=0x7f0b0003;
-        public static final int text=0x7f0b0059;
-        public static final int text1=0x7f0b0094;
-        public static final int text2=0x7f0b0097;
+        public static final int text=0x7f0b0060;
+        public static final int text1=0x7f0b00a1;
+        public static final int text2=0x7f0b00a4;
         public static final int useLogo=0x7f0b0004;
+        public static final int vertical=0x7f0b0011;
         public static final int wrap_content=0x7f0b0000;
     }
     public static final class integer {
@@ -1456,30 +1729,31 @@ containing a value of this type.
         public static final int generic_dialog_context_menu=0x7f030021;
         public static final int generic_dialog_edit_text=0x7f030022;
         public static final int generic_dialog_file_import_export_selection=0x7f030023;
-        public static final int generic_expandable_list=0x7f030024;
-        public static final int generic_expandable_list_row=0x7f030025;
-        public static final int generic_list_item=0x7f030026;
-        public static final int generic_list_item_row=0x7f030027;
-        public static final int generic_list_item_row_with_buttons=0x7f030028;
+        public static final int generic_dialog_password=0x7f030024;
+        public static final int generic_expandable_list=0x7f030025;
+        public static final int generic_expandable_list_row=0x7f030026;
+        public static final int generic_list_item=0x7f030027;
+        public static final int generic_list_item_row=0x7f030028;
         public static final int generic_list_items=0x7f030029;
         public static final int generic_list_items_selection=0x7f03002a;
-        public static final int generic_preference=0x7f03002b;
-        public static final int generic_preference_value=0x7f03002c;
-        public static final int generic_preferences=0x7f03002d;
-        public static final int generic_preferences_layout=0x7f03002e;
-        public static final int generic_preferences_layout_no_buttons=0x7f03002f;
-        public static final int generic_simple_spinner_dropdown_item=0x7f030030;
-        public static final int generic_simple_spinner_item=0x7f030031;
-        public static final int generic_spinner_dropdown_item=0x7f030032;
-        public static final int generic_tabs=0x7f030033;
-        public static final int generic_tabs_view_pager=0x7f030034;
-        public static final int generic_text_show=0x7f030035;
-        public static final int generic_webview=0x7f030036;
-        public static final int oi_distribution_eula=0x7f030037;
-        public static final int oi_distribution_infoactivity=0x7f030038;
-        public static final int server_preferences=0x7f030039;
-        public static final int sherlock_spinner_dropdown_item=0x7f03003a;
-        public static final int sherlock_spinner_item=0x7f03003b;
+        public static final int generic_on_off_switch_preference=0x7f03002b;
+        public static final int generic_preference=0x7f03002c;
+        public static final int generic_preference_value=0x7f03002d;
+        public static final int generic_preferences=0x7f03002e;
+        public static final int generic_preferences_layout=0x7f03002f;
+        public static final int generic_preferences_layout_no_buttons=0x7f030030;
+        public static final int generic_simple_spinner_dropdown_item=0x7f030031;
+        public static final int generic_simple_spinner_item=0x7f030032;
+        public static final int generic_spinner_dropdown_item=0x7f030033;
+        public static final int generic_tabs=0x7f030034;
+        public static final int generic_tabs_view_pager=0x7f030035;
+        public static final int generic_text_show=0x7f030036;
+        public static final int generic_webview=0x7f030037;
+        public static final int oi_distribution_eula=0x7f030038;
+        public static final int oi_distribution_infoactivity=0x7f030039;
+        public static final int server_preferences=0x7f03003a;
+        public static final int sherlock_spinner_dropdown_item=0x7f03003b;
+        public static final int sherlock_spinner_item=0x7f03003c;
     }
     public static final class menu {
         public static final int server_preferences_options_menu=0x7f0f0000;
@@ -1493,19 +1767,19 @@ containing a value of this type.
         public static final int recent_changes=0x7f050001;
     }
     public static final class string {
-        public static final int aboutPreferencesCopyrightsKey=0x7f090125;
-        public static final int aboutPreferencesCopyrightsTitle=0x7f090124;
-        public static final int aboutPreferencesEulaDefaultExportFilename=0x7f090128;
-        public static final int aboutPreferencesEulaTitleLong=0x7f090127;
-        public static final int aboutPreferencesEulaTitleShort=0x7f090126;
+        public static final int aboutPreferencesCopyrightsKey=0x7f090127;
+        public static final int aboutPreferencesCopyrightsTitle=0x7f090126;
+        public static final int aboutPreferencesEulaDefaultExportFilename=0x7f09012a;
+        public static final int aboutPreferencesEulaTitleLong=0x7f090129;
+        public static final int aboutPreferencesEulaTitleShort=0x7f090128;
         /**  end utility strings 
  start about preferences activity strings 
          */
-        public static final int aboutPreferencesTitle=0x7f090123;
+        public static final int aboutPreferencesTitle=0x7f090125;
         /**  end about preferences activity strings 
  start about strings 
          */
-        public static final int aboutTitle=0x7f090129;
+        public static final int aboutTitle=0x7f09012b;
         /**  end mime file types strings 
  start filemanager strings 
  Automatically filled in by Launchpad: 
@@ -1564,7 +1838,7 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090010;
-        public static final int appCopyrightNoticeWithWarrantyDisclaimerText=0x7f09012c;
+        public static final int appCopyrightNoticeWithWarrantyDisclaimerText=0x7f09012e;
         public static final int appPreferencesAboutKey=0x7f09004b;
         public static final int appPreferencesAboutSummary=0x7f09004a;
         public static final int appPreferencesAboutTitle=0x7f090049;
@@ -1586,8 +1860,8 @@ containing a value of this type.
         public static final int copy_button=0x7f0900bb;
         public static final int copy_button_multiselect=0x7f0900bf;
         public static final int copy_title=0x7f0900ba;
-        public static final int copyrightsText=0x7f09012b;
-        public static final int copyrightsTitle=0x7f09012a;
+        public static final int copyrightsText=0x7f09012d;
+        public static final int copyrightsTitle=0x7f09012c;
         public static final int create_new_folder=0x7f0900ac;
         public static final int dbx_install=0x7f090002;
         public static final int dbx_install_button_cancel=0x7f090004;
@@ -1616,10 +1890,10 @@ containing a value of this type.
         /**  end utility strings 
  start eula strings 
          */
-        public static final int eulaText=0x7f09012e;
+        public static final int eulaText=0x7f090130;
         /**  end copyright strings 
          */
-        public static final int fileFormatSpinnerLabel=0x7f09012d;
+        public static final int fileFormatSpinnerLabel=0x7f09012f;
         public static final int file_copied=0x7f0900b7;
         public static final int file_deleted=0x7f0900b1;
         public static final int file_extension_3gp=0x7f090088;
@@ -1745,6 +2019,8 @@ containing a value of this type.
         public static final int genericSaveButtonLabel=0x7f090111;
         public static final int genericSelectAll=0x7f090108;
         public static final int genericSelectButtonLabel=0x7f09011f;
+        public static final int genericSwitchOff=0x7f090124;
+        public static final int genericSwitchOn=0x7f090123;
         public static final int genericUnselectAll=0x7f090109;
         public static final int genericUriFilenamePrefix=0x7f0900f0;
         public static final int genericYesButtonLabel=0x7f090114;
@@ -1965,14 +2241,14 @@ containing a value of this type.
         public static final int serverPreferencesServerInternetAddressKey=0x7f090052;
         public static final int serverPreferencesServerInternetAddressSummary=0x7f090051;
         public static final int serverPreferencesServerInternetAddressTitle=0x7f090050;
-        public static final int serverPreferencesServerPasswordDialogTitle=0x7f090060;
-        public static final int serverPreferencesServerPasswordKey=0x7f09005f;
-        public static final int serverPreferencesServerPasswordSummary=0x7f09005e;
-        public static final int serverPreferencesServerPasswordTitle=0x7f09005d;
         public static final int serverPreferencesServerUserNameDialogTitle=0x7f09005c;
         public static final int serverPreferencesServerUserNameKey=0x7f09005b;
         public static final int serverPreferencesServerUserNameSummary=0x7f09005a;
         public static final int serverPreferencesServerUserNameTitle=0x7f090059;
+        public static final int serverPreferencesServerUserPasswordDialogTitle=0x7f090060;
+        public static final int serverPreferencesServerUserPasswordKey=0x7f09005f;
+        public static final int serverPreferencesServerUserPasswordSummary=0x7f09005e;
+        public static final int serverPreferencesServerUserPasswordTitle=0x7f09005d;
         public static final int serverPreferencesSettingsTitle=0x7f09004f;
         /**  Preferences 
  Menu item for Settings 
@@ -1986,7 +2262,7 @@ containing a value of this type.
         /**  Style to apply on top of a wallpaper settings theme when it is being
          shown on top of the real wallpaper 
          */
-        public static final int ActiveWallpaperSettings=0x7f0a007e;
+        public static final int ActiveWallpaperSettings=0x7f0a0080;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -2033,7 +2309,7 @@ containing a value of this type.
         public static final int ButtonBarButton=0x7f0a006a;
         public static final int CommonButtonGreen=0x7f0a0005;
         public static final int CommonButtonLightGray=0x7f0a0006;
-        public static final int FullscreenActionBarStyle=0x7f0a0073;
+        public static final int FullscreenActionBarStyle=0x7f0a0075;
         public static final int FullscreenTheme=0x7f0a0068;
         public static final int MinusButton=0x7f0a0072;
         /**  black preferences palette 
@@ -2048,7 +2324,7 @@ containing a value of this type.
         /**  Style to apply on top of a wallpaper settings theme when it is being
          shown on top of the real wallpaper 
          */
-        public static final int PreviewWallpaperSettings=0x7f0a007f;
+        public static final int PreviewWallpaperSettings=0x7f0a0081;
         public static final int Sherlock___TextAppearance_Small=0x7f0a004d;
         public static final int Sherlock___Theme=0x7f0a0058;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0a005a;
@@ -2097,7 +2373,7 @@ containing a value of this type.
          of it a dark color.
     
          */
-        public static final int Theme=0x7f0a0074;
+        public static final int Theme=0x7f0a0076;
         /**  Theme for a light background with dark text on top.  Set your activity
          to this theme if you would like such an appearance.  As with the
          default theme, you should try to assume little more than that the
@@ -2107,29 +2383,29 @@ containing a value of this type.
          media players.   If you want the normal (dark background) theme
          do <em>not</em> use this, use {@link #Theme}. 
          */
-        public static final int Theme_Black=0x7f0a0077;
+        public static final int Theme_Black=0x7f0a0079;
         /**  Variant of the black theme with no title bar 
          */
-        public static final int Theme_Black_NoTitleBar=0x7f0a0078;
+        public static final int Theme_Black_NoTitleBar=0x7f0a007a;
         /**  Variant of the black theme that has no title bar and fills the entire screen 
          */
-        public static final int Theme_Black_NoTitleBar_Fullscreen=0x7f0a0079;
+        public static final int Theme_Black_NoTitleBar_Fullscreen=0x7f0a007b;
         /**  Default theme for activities that don't actually display a UI; that
          is, they finish themselves before being resumed.  
          */
-        public static final int Theme_NoDisplay=0x7f0a0083;
+        public static final int Theme_NoDisplay=0x7f0a0085;
         /**  Variant of the default (dark) theme with no title bar 
          */
-        public static final int Theme_NoTitleBar=0x7f0a0075;
+        public static final int Theme_NoTitleBar=0x7f0a0077;
         /**  Variant of the default (dark) theme that has no title bar and fills the entire screen 
          */
-        public static final int Theme_NoTitleBar_Fullscreen=0x7f0a0076;
+        public static final int Theme_NoTitleBar_Fullscreen=0x7f0a0078;
         /**  Default dark theme for panel windows.  This removes all extraneous
          window decorations, so you basically have an empty rectangle in which
          to place your content.  It makes the window floating, with a transparent
          background, and turns off dimming behind the window. 
          */
-        public static final int Theme_Panel=0x7f0a0084;
+        public static final int Theme_Panel=0x7f0a0086;
         public static final int Theme_Sherlock=0x7f0a005b;
         public static final int Theme_Sherlock_Light=0x7f0a005c;
         public static final int Theme_Sherlock_Light_DarkActionBar=0x7f0a005d;
@@ -2139,25 +2415,25 @@ containing a value of this type.
          to see through them to the windows behind.  This sets up the translucent
          flag and appropriate animations for your windows.  
          */
-        public static final int Theme_Translucent=0x7f0a0080;
+        public static final int Theme_Translucent=0x7f0a0082;
         /**  Variant of the translucent theme with no title bar 
          */
-        public static final int Theme_Translucent_NoTitleBar=0x7f0a0081;
+        public static final int Theme_Translucent_NoTitleBar=0x7f0a0083;
         /**  Variant of the translucent theme that has no title bar and fills the entire screen 
          */
-        public static final int Theme_Translucent_NoTitleBar_Fullscreen=0x7f0a0082;
+        public static final int Theme_Translucent_NoTitleBar_Fullscreen=0x7f0a0084;
         /**  Default theme for windows that want to have the user's selected wallpaper appear behind them.  
          */
-        public static final int Theme_Wallpaper=0x7f0a007a;
+        public static final int Theme_Wallpaper=0x7f0a007c;
         /**  Variant of the translucent theme with no title bar 
          */
-        public static final int Theme_Wallpaper_NoTitleBar=0x7f0a007b;
+        public static final int Theme_Wallpaper_NoTitleBar=0x7f0a007d;
         /**  Variant of the translucent theme that has no title bar and fills the entire screen 
          */
-        public static final int Theme_Wallpaper_NoTitleBar_Fullscreen=0x7f0a007c;
+        public static final int Theme_Wallpaper_NoTitleBar_Fullscreen=0x7f0a007e;
         /**  Theme for a wallpaper's setting activity that is designed to be on top of a dark background. 
          */
-        public static final int Theme_WallpaperSettings=0x7f0a007d;
+        public static final int Theme_WallpaperSettings=0x7f0a007f;
         /** 
         <item name="android:actionBarItemBackground">@drawable/abs_selectable_background_gray</item>
         <item name="android:popupMenuStyle">@style/gray_PopupMenu</item>
@@ -2217,6 +2493,8 @@ containing a value of this type.
         public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0a002b;
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0a0039;
         public static final int _CommonButtonBase=0x7f0a0004;
+        public static final int genericOnOffSwitchStyle=0x7f0a0073;
+        public static final int genericOnOffSwitchTextAppearance=0x7f0a0074;
         public static final int gray_ActionBarTabStyle=0x7f0a0065;
         public static final int gray_DropDownListView=0x7f0a0064;
         public static final int gray_DropDownNav=0x7f0a0066;
@@ -2272,6 +2550,363 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name android:buttonBarStyle
         */
         public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
+        /** Attributes that can be used with a GenericOnOffSwitch.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_backgroundMask com.app.nfsclient:backgroundMask}</code></td><td> We need a mask drawable to mask the background, then draw the track </td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_drawableOff com.app.nfsclient:drawableOff}</code></td><td> drawablw to use when the switch is in the unchecked/"off" state.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_drawableOn com.app.nfsclient:drawableOn}</code></td><td> drawablw to use when the switch is in the checked/"on" state.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_leftBackground com.app.nfsclient:leftBackground}</code></td><td> the track drawable will be drawn on top of these background.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_orientation com.app.nfsclient:orientation}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_pushStyle com.app.nfsclient:pushStyle}</code></td><td> if the switch should operate like iOS UISwitch </td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_rightBackground com.app.nfsclient:rightBackground}</code></td><td> The background when right side of the switch is visible </td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_switchMinHeight com.app.nfsclient:switchMinHeight}</code></td><td> Minimum height for the switch component </td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_switchMinWidth com.app.nfsclient:switchMinWidth}</code></td><td> Minimum width for the switch component </td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_switchPadding com.app.nfsclient:switchPadding}</code></td><td> Minimum space between the switch and caption text </td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_switchTextAppearanceAttrib com.app.nfsclient:switchTextAppearanceAttrib}</code></td><td> TextAppearance style for text displayed on the switch thumb.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_textOff com.app.nfsclient:textOff}</code></td><td> Text to use when the switch is in the unchecked/"off" state.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_textOn com.app.nfsclient:textOn}</code></td><td> Text to use when the switch is in the checked/"on" state.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_textOnThumb com.app.nfsclient:textOnThumb}</code></td><td> if text should be drawn on the Thumb or On the track.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_thumb com.app.nfsclient:thumb}</code></td><td> Drawable to use as the "thumb" that switches back and forth.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_thumbExtraMovement com.app.nfsclient:thumbExtraMovement}</code></td><td> if the thumb should be allowed to move more beyond the switch boundaries </td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_thumbTextPadding com.app.nfsclient:thumbTextPadding}</code></td><td> Amount of padding on either side of text within the switch thumb.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_track com.app.nfsclient:track}</code></td><td> Drawable to use as the "track" that the switch thumb slides within.</td></tr>
+           <tr><td><code>{@link #GenericOnOffSwitch_trackTextPadding com.app.nfsclient:trackTextPadding}</code></td><td> Amount of padding on either side of text within the switch track.</td></tr>
+           </table>
+           @see #GenericOnOffSwitch_backgroundMask
+           @see #GenericOnOffSwitch_drawableOff
+           @see #GenericOnOffSwitch_drawableOn
+           @see #GenericOnOffSwitch_leftBackground
+           @see #GenericOnOffSwitch_orientation
+           @see #GenericOnOffSwitch_pushStyle
+           @see #GenericOnOffSwitch_rightBackground
+           @see #GenericOnOffSwitch_switchMinHeight
+           @see #GenericOnOffSwitch_switchMinWidth
+           @see #GenericOnOffSwitch_switchPadding
+           @see #GenericOnOffSwitch_switchTextAppearanceAttrib
+           @see #GenericOnOffSwitch_textOff
+           @see #GenericOnOffSwitch_textOn
+           @see #GenericOnOffSwitch_textOnThumb
+           @see #GenericOnOffSwitch_thumb
+           @see #GenericOnOffSwitch_thumbExtraMovement
+           @see #GenericOnOffSwitch_thumbTextPadding
+           @see #GenericOnOffSwitch_track
+           @see #GenericOnOffSwitch_trackTextPadding
+         */
+        public static final int[] GenericOnOffSwitch = {
+            0x7f010065, 0x7f010066, 0x7f010067, 0x7f010068,
+            0x7f010069, 0x7f01006a, 0x7f01006b, 0x7f01006c,
+            0x7f01006d, 0x7f01006e, 0x7f01006f, 0x7f010070,
+            0x7f010071, 0x7f010072, 0x7f010073, 0x7f010074,
+            0x7f010075, 0x7f010076, 0x7f010077
+        };
+        /**
+          <p>
+          @attr description
+           We need a mask drawable to mask the background, then draw the track 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:backgroundMask
+        */
+        public static final int GenericOnOffSwitch_backgroundMask = 18;
+        /**
+          <p>
+          @attr description
+           drawablw to use when the switch is in the unchecked/"off" state. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:drawableOff
+        */
+        public static final int GenericOnOffSwitch_drawableOff = 5;
+        /**
+          <p>
+          @attr description
+           drawablw to use when the switch is in the checked/"on" state. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:drawableOn
+        */
+        public static final int GenericOnOffSwitch_drawableOn = 4;
+        /**
+          <p>
+          @attr description
+           the track drawable will be drawn on top of these background. So if
+             these back grounds were to be visible, the track has to have transparency 
+ The background when left side of the switch is visible 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:leftBackground
+        */
+        public static final int GenericOnOffSwitch_leftBackground = 16;
+        /**
+          <p>This symbol is the offset where the {@link com.app.nfsclient.R.attr#orientation}
+          attribute's value can be found in the {@link #GenericOnOffSwitch} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>1</td><td> the switch moves only on the x-axis(horizontally) </td></tr>
+<tr><td><code>vertical</code></td><td>0</td><td> the switch moves only on the y-axis(vertically) </td></tr>
+</table>
+          @attr name android:orientation
+        */
+        public static final int GenericOnOffSwitch_orientation = 15;
+        /**
+          <p>
+          @attr description
+           if the switch should operate like iOS UISwitch 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:pushStyle
+        */
+        public static final int GenericOnOffSwitch_pushStyle = 6;
+        /**
+          <p>
+          @attr description
+           The background when right side of the switch is visible 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:rightBackground
+        */
+        public static final int GenericOnOffSwitch_rightBackground = 17;
+        /**
+          <p>
+          @attr description
+           Minimum height for the switch component 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:switchMinHeight
+        */
+        public static final int GenericOnOffSwitch_switchMinHeight = 13;
+        /**
+          <p>
+          @attr description
+           Minimum width for the switch component 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:switchMinWidth
+        */
+        public static final int GenericOnOffSwitch_switchMinWidth = 12;
+        /**
+          <p>
+          @attr description
+           Minimum space between the switch and caption text 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:switchPadding
+        */
+        public static final int GenericOnOffSwitch_switchPadding = 14;
+        /**
+          <p>
+          @attr description
+           TextAppearance style for text displayed on the switch thumb. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:switchTextAppearanceAttrib
+        */
+        public static final int GenericOnOffSwitch_switchTextAppearanceAttrib = 11;
+        /**
+          <p>
+          @attr description
+           Text to use when the switch is in the unchecked/"off" state. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          <p>This is a private symbol.
+          @attr name android:textOff
+        */
+        public static final int GenericOnOffSwitch_textOff = 3;
+        /**
+          <p>
+          @attr description
+           Text to use when the switch is in the checked/"on" state. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          <p>This is a private symbol.
+          @attr name android:textOn
+        */
+        public static final int GenericOnOffSwitch_textOn = 2;
+        /**
+          <p>
+          @attr description
+           if text should be drawn on the Thumb or On the track. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textOnThumb
+        */
+        public static final int GenericOnOffSwitch_textOnThumb = 7;
+        /**
+          <p>
+          @attr description
+           Drawable to use as the "thumb" that switches back and forth. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:thumb
+        */
+        public static final int GenericOnOffSwitch_thumb = 0;
+        /**
+          <p>
+          @attr description
+           if the thumb should be allowed to move more beyond the switch boundaries 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:thumbExtraMovement
+        */
+        public static final int GenericOnOffSwitch_thumbExtraMovement = 8;
+        /**
+          <p>
+          @attr description
+           Amount of padding on either side of text within the switch thumb. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:thumbTextPadding
+        */
+        public static final int GenericOnOffSwitch_thumbTextPadding = 9;
+        /**
+          <p>
+          @attr description
+           Drawable to use as the "track" that the switch thumb slides within. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:track
+        */
+        public static final int GenericOnOffSwitch_track = 1;
+        /**
+          <p>
+          @attr description
+           Amount of padding on either side of text within the switch track. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:trackTextPadding
+        */
+        public static final int GenericOnOffSwitch_trackTextPadding = 10;
+        /**  generic preference field with an onOff switch 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #GenericOnOffSwitchPreference_onOffSwitch com.app.nfsclient:onOffSwitch}</code></td><td></td></tr>
+           </table>
+           @see #GenericOnOffSwitchPreference_onOffSwitch
+         */
+        public static final int[] GenericOnOffSwitchPreference = {
+            0x7f010064
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.app.nfsclient.R.attr#onOffSwitch}
+          attribute's value can be found in the {@link #GenericOnOffSwitchPreference} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:onOffSwitch
+        */
+        public static final int GenericOnOffSwitchPreference_onOffSwitch = 0;
         /**  RemoteImageView style 
            <p>Includes the following attributes:</p>
            <table>
@@ -4426,5 +5061,178 @@ containing a value of this type.
           @attr name android:android_focusable
         */
         public static final int SherlockView_android_focusable = 0;
+        /** Attributes that can be used with a genericOnOffSwitchTextAppearanceAttrib.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_textAllCaps com.app.nfsclient:textAllCaps}</code></td><td> Present the text in ALL CAPS.</td></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_textColor com.app.nfsclient:textColor}</code></td><td> Text color.</td></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_textColorHighlight com.app.nfsclient:textColorHighlight}</code></td><td> Color of the text selection highlight.</td></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_textColorHint com.app.nfsclient:textColorHint}</code></td><td> Color of the hint text.</td></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_textColorLink com.app.nfsclient:textColorLink}</code></td><td> Color of the links.</td></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_textSize com.app.nfsclient:textSize}</code></td><td> Size of the text.</td></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_textStyle com.app.nfsclient:textStyle}</code></td><td> Style (bold, italic, bolditalic) for the text.</td></tr>
+           <tr><td><code>{@link #genericOnOffSwitchTextAppearanceAttrib_typeface com.app.nfsclient:typeface}</code></td><td> Typeface (normal, sans, serif, monospace) for the text.</td></tr>
+           </table>
+           @see #genericOnOffSwitchTextAppearanceAttrib_textAllCaps
+           @see #genericOnOffSwitchTextAppearanceAttrib_textColor
+           @see #genericOnOffSwitchTextAppearanceAttrib_textColorHighlight
+           @see #genericOnOffSwitchTextAppearanceAttrib_textColorHint
+           @see #genericOnOffSwitchTextAppearanceAttrib_textColorLink
+           @see #genericOnOffSwitchTextAppearanceAttrib_textSize
+           @see #genericOnOffSwitchTextAppearanceAttrib_textStyle
+           @see #genericOnOffSwitchTextAppearanceAttrib_typeface
+         */
+        public static final int[] genericOnOffSwitchTextAppearanceAttrib = {
+            0x7f010078, 0x7f010079, 0x7f01007a, 0x7f01007b,
+            0x7f01007c, 0x7f01007d, 0x7f01007e, 0x7f01007f
+        };
+        /**
+          <p>
+          @attr description
+           Present the text in ALL CAPS. This may use a small-caps form when available. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textAllCaps
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_textAllCaps = 7;
+        /**
+          <p>
+          @attr description
+           Text color. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textColor
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_textColor = 0;
+        /**
+          <p>
+          @attr description
+           Color of the text selection highlight. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textColorHighlight
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_textColorHighlight = 4;
+        /**
+          <p>
+          @attr description
+           Color of the hint text. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textColorHint
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_textColorHint = 5;
+        /**
+          <p>
+          @attr description
+           Color of the links. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textColorLink
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_textColorLink = 6;
+        /**
+          <p>
+          @attr description
+           Size of the text. Recommended dimension type for text is "sp" for scaled-pixels (example: 15sp). 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textSize
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_textSize = 1;
+        /**
+          <p>
+          @attr description
+           Style (bold, italic, bolditalic) for the text. 
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td></td></tr>
+<tr><td><code>bold</code></td><td>1</td><td></td></tr>
+<tr><td><code>italic</code></td><td>2</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:textStyle
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_textStyle = 2;
+        /**
+          <p>
+          @attr description
+           Typeface (normal, sans, serif, monospace) for the text. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td></td></tr>
+<tr><td><code>sans</code></td><td>1</td><td></td></tr>
+<tr><td><code>serif</code></td><td>2</td><td></td></tr>
+<tr><td><code>monospace</code></td><td>3</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:typeface
+        */
+        public static final int genericOnOffSwitchTextAppearanceAttrib_typeface = 3;
     };
 }

@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2014 SpeedOps
+ * All rights reserved.
+ *
+ * SpeedOps is not responsible for any use or misuse of this product.
+ * In using this software you agree to hold harmless SpeedOps and any other
+ * contributors to this project from any damages or liabilities which might result 
+ * from its use.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 /* 
  * Copyright (C) 2008 OpenIntents.org
  *
@@ -85,4 +100,19 @@ public final class FileManagerIntents {
 	 * <p>Constant Value: "org.openintents.extra.EXPORT"</p>
 	 */
 	public static final String EXTRA_FILE_FORMAT = "org.openintents.extra.FILE_FORMAT";
+	
+	/**
+	 * Flag to pass the file system type.
+     *
+	 * <p>Constant Value: "org.openintents.extra.EXTRA_FILE_SYSTEM_TYPE"</p>
+	 */
+	public static final String EXTRA_FILE_SYSTEM_TYPE = "org.openintents.extra.FILE_SYSTEM_TYPE";
+	
+	/**
+	 * Flag to pass the file system id.
+     *
+	 * <p>Constant Value: "org.openintents.extra.EXTRA_FILE_SYSTEM_ID"</p>
+	 */
+	public static final String EXTRA_FILE_SYSTEM_ID = "org.openintents.extra.FILE_SYSTEM_ID";
+	
 }

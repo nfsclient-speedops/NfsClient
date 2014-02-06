@@ -25,23 +25,24 @@ import com.actionbarsherlock.view.MenuItem;
 import com.app.nfsclient.AppState;
 import com.app.nfsclient.R;
 import com.app.nfsclient.Utils;
+import com.app.nfsclient.filemanager.FileManagerActivity;
+import com.app.nfsclient.filemanager.intents.FileManagerIntents;
 import com.app.nfsclient.generic.GenericAlertDialog;
 import com.app.nfsclient.generic.GenericDialogContextMenu;
 import com.app.nfsclient.generic.GenericListItem;
 import com.app.nfsclient.generic.GenericListItemsListFragment;
+import com.app.nfsclient.protocol.xfile.XFile;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemLongClickListener;
 
 public class ServersListFragment extends GenericListItemsListFragment {
     private static final String TAG = "ServersListFragment";
@@ -51,30 +52,16 @@ public class ServersListFragment extends GenericListItemsListFragment {
     	".serverInternetAddressKey";
     public static final String SERVER_HOST_NAME_KEY = AppState.APP_PACKAGE_NAME + "." + TAG +
     	".serverHostNameKey";
+    public static final String SERVER_USER_NAME_KEY = AppState.APP_PACKAGE_NAME + "." + TAG +
+    	".serverUserNameKey";
+    public static final String SERVER_USER_PASSWORD_KEY = AppState.APP_PACKAGE_NAME + "." + TAG +
+        ".serverUserPasswordKey";
     public static final String SERVER_EXPORT_DIRECTORIES_KEY = AppState.APP_PACKAGE_NAME + "." + TAG +
        	".serverExportDirectoriesNameKey";
     
     public ServersListFragment() {
     	
     }
-    
-    public final static Handler buttonHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-        	AppState.androidLogX(TAG, "startupHandler");
-        	
-        	final ServersListFragment fragment = (ServersListFragment)msg.obj;
-        	final int position = msg.arg1;
-            switch(msg.what) {
-            case GenericListItem.GENERIC_LIST_ITEM_BUTTON_LEFT: // files
-            	break;
-            case GenericListItem.GENERIC_LIST_ITEM_BUTTON_RIGHT: // edit
-            	fragment.editActivityStart(AppState.serversGet(fragment.getActivity(), position),
-                   	GenericListItem.ACTIVITY_RESULT_LIST_REFRESH);
-                break;
-            }
-        }
-    };
     
     @Override
     protected void dataInit() {
@@ -89,8 +76,7 @@ public class ServersListFragment extends GenericListItemsListFragment {
     	titleViewPluralsParams = new Object[] {
     		list.size()
     	};
-    	itemLayoutId = R.layout.generic_list_item_row_with_buttons;
-    	listItemButtonHandler = buttonHandler;
+    	itemLayoutId = R.layout.generic_list_item_row;
     }
 	
     @Override
@@ -98,27 +84,56 @@ public class ServersListFragment extends GenericListItemsListFragment {
 		super.viewsInit();
     	AppState.logX(TAG, "viewsInit");
 
-        getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
-	        @Override
-	        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-	        	
-	        	final Activity activity = getActivity();
-	        	final Server server = AppState.serversGet(getActivity(), position);
-	        	List<GenericDialogContextMenu.GenericDialogContextMenuItem> items =
-					new ArrayList<GenericDialogContextMenu.GenericDialogContextMenuItem>();
-				items.add(new GenericDialogContextMenu.GenericDialogContextMenuItem(activity.getString(
-					R.string.genericDeleteButtonLabel), R.drawable.ic_trash));
-				
-				final GenericDialogContextMenu dialog = new GenericDialogContextMenu(activity,
-					server.primaryNameGet(), items, null);
-				dialog.itemClickListenerSet(new ContextMenuItemClickListener(activity, server, dialog));
-				dialog.show();
-				
-	            return true;
-	        }	
-	    });
     }
-	private class ContextMenuItemClickListener implements AdapterView.OnItemClickListener {
+	
+    private void editActivityStart(Context context, Server server, int requestCode) {
+        AppState.logX(TAG, String.format("editActivityStart: requestCode = %d", requestCode));
+
+    	Bundle bundle = new Bundle();
+    	getFragmentManager().putFragment(bundle, FRAGMENT_TAG, ServersListFragment.this);
+	
+        Intent intent = new Intent(context, ServerPreferencesActivity.class);
+    	intent.putExtra(FRAGMENT_TAG, bundle);
+    	String hostName = Utils.EMPTY_STRING;
+    	String inetAddr = Utils.EMPTY_STRING;
+    	String userName = Utils.EMPTY_STRING;
+    	String userPass = Utils.EMPTY_STRING;
+    	String[] exports = null;
+    	
+    	if (server != null) {
+            hostName = server.serverHostNameGet();
+            inetAddr = server.serverInternetAddressGet();
+            userName = server.serverUserNameGet();
+            userPass = server.serverInternetAddressGet();
+            exports = Server.serverExportDirectoriesArrayGet(server.serverExportDirectoriesGet());
+            
+    		AppState.logX(TAG, String.format("activityStart: host name = %s, inet addr = %s, exports = %s",
+    			server.serverHostNameGet(), server.serverInternetAddressGet(), Server
+    			.serverExportDirectoriesStringGet(server.serverExportDirectoriesGet())));
+    	}
+    	
+    	intent.putExtra(SERVER_HOST_NAME_KEY, hostName);
+        intent.putExtra(SERVER_INTERNET_ADDRESS_KEY, inetAddr);
+        intent.putExtra(SERVER_USER_NAME_KEY, userName);
+        intent.putExtra(SERVER_USER_PASSWORD_KEY, userPass);
+        intent.putExtra(SERVER_EXPORT_DIRECTORIES_KEY, exports);
+        startActivityForResult(intent, requestCode);
+    }
+	
+    private void serverFilesShow(Context context, Server server) {
+    	Intent intent = new Intent(context, FileManagerActivity.class);
+		Uri uriFile = Uri.parse(AppState.appDataDirectoryFileGet(context).getAbsolutePath());
+        intent.setData(uriFile);
+		
+		// Set the file manager parameters
+        intent.putExtra(FileManagerIntents.EXTRA_FILE_SYSTEM_TYPE, server.itemTypeGet());
+        intent.putExtra(FileManagerIntents.EXTRA_FILE_SYSTEM_ID, server.serverHostNameGet());
+        intent.putExtra(FileManagerIntents.EXTRA_TITLE, "Files");
+		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, "Files");
+		
+		// startActivity(intent);
+    }
+    private class ContextMenuItemClickListener implements AdapterView.OnItemClickListener {
         private static final String TAG = ServersListFragment.TAG + ":ContextMenuItemClickListener";
         
         private Context context;
@@ -135,17 +150,24 @@ public class ServersListFragment extends GenericListItemsListFragment {
 		public void onItemClick(AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
 			AppState.logX(TAG, String.format("onItemClick: arg2 = %d, arg3 = %d", arg2, arg3));
 
+	    	final FragmentActivity activity = getActivity();
 	        switch(arg2) {
-	        case 0:
+	        case 0: // edit the server configuration
+	        	editActivityStart(activity, server, GenericListItem.ACTIVITY_RESULT_ACCOUNT_EDIT);
 	            break;
-	          
-	        case 1: // delete the server
+	            
+	        case 1: // show the server's nfs files
+	        	serverFilesShow(activity, server);
+	        	XFile xf;
+	            break;
+	            
+	        case 2: // delete the server
 	        	final GenericAlertDialog dialog = new GenericAlertDialog(context);
 	    	    dialog
 	    	        .cancelableSet(true)
 	                .iconSet(R.drawable.ic_trash)
 	                .titleSet(R.string.genericConfirm)
-	                .messageSet(String.format("Delete the server \"%s\"?", server.primaryNameGet()))
+	                .messageSet(String.format("Delete the server \"%s\"?", server.firstGet()))
 	                .positiveButtonSet(R.string.genericDeleteButtonLabel, new View.OnClickListener() {
 	    		        public void onClick(View v) {
 	    				    AppState.serversDelete(context, server, true);
@@ -154,8 +176,8 @@ public class ServersListFragment extends GenericListItemsListFragment {
 	    				    // refresh the view
 	    				    listFragmentRefresh(new ServersListFragment(), FRAGMENT_TAG);
 	    				    dialog.dismiss();
-	    				    }
-	    		        })
+	    			    }
+	    		     })
 	                .negativeButtonSet(R.string.genericCancelButtonLabel, new View.OnClickListener() {
 	            	    @Override
 	    	            public void onClick(View v) {
@@ -169,47 +191,36 @@ public class ServersListFragment extends GenericListItemsListFragment {
 			dialog.dismiss();
 		}
 	}
-	
-    private void editActivityStart(Server server, int requestCode) {
-        AppState.logX(TAG, String.format("editActivityStart: requestCode = %d", requestCode));
-
-    	final FragmentActivity activity = getActivity();
-    	
-    	Bundle bundle = new Bundle();
-    	getFragmentManager().putFragment(bundle, FRAGMENT_TAG, ServersListFragment.this);
-	
-        Intent intent = new Intent(activity, ServerPreferencesActivity.class);
-    	intent.putExtra(FRAGMENT_TAG, bundle);
-    	
-    	if (server != null) {
-            intent.putExtra(SERVER_HOST_NAME_KEY, server.serverHostNameGet());
-            intent.putExtra(SERVER_INTERNET_ADDRESS_KEY, server.serverInternetAddressGet());
-            intent.putExtra(SERVER_EXPORT_DIRECTORIES_KEY, server.serverExportDirectoriesStringGet());
-            
-    		AppState.logX(TAG, String.format("activityStart: host name = %s, inet addr = %s, exports = %s",
-    			server.serverHostNameGet(), server.serverInternetAddressGet(), server
-    			.serverExportDirectoriesStringGet()));
-    	}
-    	
-        activity.startActivityForResult(intent, requestCode);
-    }
-	
+    
     @Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        AppState.logX(TAG, "onListItemClick");
+        
+        final Activity activity = getActivity();
+        final Server server = AppState.serversGet(activity, position);
+        List<GenericDialogContextMenu.GenericDialogContextMenuItem> items =
+        	new ArrayList<GenericDialogContextMenu.GenericDialogContextMenuItem>();
+        items.add(new GenericDialogContextMenu.GenericDialogContextMenuItem(activity.getString(
+            R.string.genericEditButtonLabel)));
+        items.add(new GenericDialogContextMenu.GenericDialogContextMenuItem(activity.getString(
+            R.string.genericFilesButtonLabel)));
+        items.add(new GenericDialogContextMenu.GenericDialogContextMenuItem(activity.getString(
+        	R.string.genericDeleteButtonLabel)));
 
+        final GenericDialogContextMenu dialog = new GenericDialogContextMenu(activity, server.firstGet(),
+        	items, null);
+        dialog.itemClickListenerSet(new ContextMenuItemClickListener(activity, server, dialog));
+        dialog.show();
 	}
     
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    	AppState.logX(TAG, "onCreateOptionsMenu");
-    	
+    	final FragmentActivity activity = getActivity();
         inflater.inflate(R.menu.servers_list_options_menu, menu);
         menu.findItem(R.id.serversListOptionsMenuNewServerItem)
             .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			    public boolean onMenuItemClick(MenuItem item) {
-			    	editActivityStart(null, GenericListItem.ACTIVITY_RESULT_ACCOUNT_CONNECT);
+			    	editActivityStart(activity, null, GenericListItem.ACTIVITY_RESULT_ACCOUNT_EDIT);
 			    	
 				    return false;
 			    }
@@ -242,15 +253,15 @@ public class ServersListFragment extends GenericListItemsListFragment {
     @Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		AppState.logX(TAG, String.format("onActivityResult: requestCode = 0x%x, resultCode = %d",
-			requestCode, resultCode));
+		AppState.logX(TAG, String.format("onActivityResult: requestCode = 0x%x, resultCode = %d", requestCode,
+			resultCode));
 
 		switch(requestCode) {
-		case GenericListItem.ACTIVITY_RESULT_LIST_REFRESH:
-			AppState.logX(TAG, "onActivityResult: ACTIVITY_RESULT_LIST_REFRESH"); 
+		case GenericListItem.ACTIVITY_RESULT_ACCOUNT_EDIT:
+			AppState.logX(TAG, "onActivityResult: ACTIVITY_RESULT_ACCOUNT_EDIT"); 
 
+    		// refresh the view
 			if (resultCode == Activity.RESULT_OK)
-        		// refresh the view
 				fragmentInit();
 
     		break;

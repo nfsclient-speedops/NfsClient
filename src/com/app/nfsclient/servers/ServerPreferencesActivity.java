@@ -28,15 +28,18 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -49,6 +52,8 @@ import com.app.nfsclient.R;
 import com.app.nfsclient.Utils;
 import com.app.nfsclient.generic.GenericAlertDialog;
 import com.app.nfsclient.generic.GenericDialog;
+import com.app.nfsclient.generic.GenericOnOffSwitch;
+import com.app.nfsclient.generic.GenericOnOffSwitchPreference;
 import com.app.nfsclient.generic.GenericPreferencesActivity;
 import com.app.nfsclient.generic.GenericStringListPreference;
 import com.app.nfsclient.generic.GenericTextPreference;
@@ -73,8 +78,8 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 	private String serverUserNamePreferenceKey;
 	private GenericTextPreference serverUserNamePreference;
 
-	private String serverPasswordPreferenceKey;
-	private GenericTextPreference serverPasswordPreference;
+	private String serverUserPasswordPreferenceKey;
+	private GenericOnOffSwitchPreference serverUserPasswordPreference;
 
 	private String serverExportDirectoriesPreferenceKey;
 	private GenericStringListPreference serverExportDirectoriesPreference;
@@ -89,8 +94,12 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 	    	ServersListFragment.SERVER_HOST_NAME_KEY));
 	    AppState.stringSet(this, ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, getIntent().getStringExtra(
 		    ServersListFragment.SERVER_INTERNET_ADDRESS_KEY));
-		AppState.stringSet(this, ServersListFragment.SERVER_EXPORT_DIRECTORIES_KEY, getIntent()
-	    	.getStringExtra(ServersListFragment.SERVER_EXPORT_DIRECTORIES_KEY));
+	    AppState.stringSet(this, ServersListFragment.SERVER_USER_NAME_KEY, getIntent().getStringExtra(
+		    ServersListFragment.SERVER_USER_NAME_KEY));
+	    AppState.stringSet(this, ServersListFragment.SERVER_USER_PASSWORD_KEY, getIntent().getStringExtra(
+		    ServersListFragment.SERVER_USER_PASSWORD_KEY));
+		AppState.stringArraySet(this, ServersListFragment.SERVER_EXPORT_DIRECTORIES_KEY, getIntent()
+	    	.getStringArrayExtra(ServersListFragment.SERVER_EXPORT_DIRECTORIES_KEY));
 		
 		isNewServer = TextUtils.isEmpty(AppState.stringGet(this, ServersListFragment.SERVER_INTERNET_ADDRESS_KEY,
 			null));
@@ -117,8 +126,6 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 		serverEditPreferenceScreen = getPreferenceScreen();
 
 		// server settings preference category title
-		String currentInternetAddress = AppState.stringGet(this, ServersListFragment.SERVER_INTERNET_ADDRESS_KEY,
-			null);
 		String currentServerHostName = AppState.stringGet(this, ServersListFragment.SERVER_HOST_NAME_KEY, null);
 		serverSettingsPreferenceCategory = (PreferenceCategory)serverEditPreferenceScreen.getPreference(0);
 		serverSettingsPreferenceCategory.setTitle(getString(R.string.serverPreferencesSettingsTitle,
@@ -153,10 +160,9 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 								serverHostNamePreference.valueSet(host);
 								modified = true;
 							} else {
-								Utils.alertDialogShow(ServerPreferencesActivity.this,
-									ServerPreferencesActivity.this.getString(R.string.genericInvalidSetting),
-									String.format("There is already a server with the host name \"%s\"",
-									host));
+								Utils.alertDialogShow(ServerPreferencesActivity.this, getString(
+									R.string.genericInvalidSetting), String.format("There is already a " +
+									"server with the host name \"%s\"", host));
 							}
 						} else {
 							Utils.alertDialogShow(ServerPreferencesActivity.this, getString(
@@ -188,8 +194,8 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 		    	final EditText editText = (EditText)view.findViewById(R.id.genericDialogEditText);
 		    	editText.setText(internetAddress);
 		    	
-		    	preferenceDialog = new GenericDialog(ServerPreferencesActivity.this,
-					getString(R.string.serverPreferencesServerInternetAddressDialogTitle), getString(
+		    	preferenceDialog = new GenericDialog(ServerPreferencesActivity.this, getString(
+		    		R.string.serverPreferencesServerInternetAddressDialogTitle), getString(
 					R.string.serverPreferencesServerInternetAddressDialogMessage), view);
 		    	preferenceDialog.positiveButtonListenerSet(new View.OnClickListener() {
 					@Override
@@ -208,10 +214,9 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 									serverInternetAddressPreference.valueSet(addr);
 									modified = true;
 								} else {
-									Utils.alertDialogShow(ServerPreferencesActivity.this,
-										ServerPreferencesActivity.this.getString(R.string.genericInvalidSetting),
-										String.format("There is already a server with the IP address \"%s\"",
-										addr));
+									Utils.alertDialogShow(ServerPreferencesActivity.this, getString(
+										R.string.genericInvalidSetting), String.format("There is already a " +
+										"server with the IP address \"%s\"", addr));
 								}
 							} else {
 								Utils.alertDialogShow(ServerPreferencesActivity.this, getString(
@@ -235,14 +240,14 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 		serverUserNamePreference = (GenericTextPreference)findPreference(serverUserNamePreferenceKey);
 		serverUserNamePreference.setPersistent(persistentState);
 		serverUserNamePreference.valueSet(AppState.stringGet(ServerPreferencesActivity.this,
-	   		ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, Utils.EMPTY_STRING));
+	   		ServersListFragment.SERVER_USER_NAME_KEY, Utils.EMPTY_STRING));
 		serverUserNamePreference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
 				LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		    	View view = (View)(inflater.inflate(R.layout.generic_dialog_edit_text, null));
 		    	
 		    	String userName = AppState.stringGet(ServerPreferencesActivity.this,
-		    		ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, Utils.EMPTY_STRING);
+		    		ServersListFragment.SERVER_USER_NAME_KEY, Utils.EMPTY_STRING);
 		    	final EditText editText = (EditText)view.findViewById(R.id.genericDialogEditText);
 		    	editText.setText(userName);
 		    	
@@ -252,8 +257,16 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 					@Override
 					public void onClick(View v) {
 						String name = editText.getText().toString();
-						if (!TextUtils.isEmpty(name))
+						if (!TextUtils.isEmpty(name)) {
 							name = name.trim();
+							serverUserNamePreference.valueSet(name);
+							AppState.stringSet(ServerPreferencesActivity.this,
+								ServersListFragment.SERVER_USER_NAME_KEY, name);
+							modified = true;
+						} else {
+							Utils.alertDialogShow(ServerPreferencesActivity.this, getString(
+								R.string.genericInvalidSetting), "The server user name is empty");
+						}
 
 						preferenceDialog.dismiss();
 					}
@@ -264,38 +277,104 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 			}
 		});
 		
-		serverUserNamePreferenceKey = getString(R.string.serverPreferencesServerUserNameKey);
-		serverUserNamePreference = (GenericTextPreference)findPreference(serverUserNamePreferenceKey);
-		serverUserNamePreference.setPersistent(persistentState);
-		serverUserNamePreference.valueSet(AppState.stringGet(ServerPreferencesActivity.this,
-	   		ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, Utils.EMPTY_STRING));
-		serverUserNamePreference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		serverUserPasswordPreferenceKey = getString(R.string.serverPreferencesServerUserPasswordKey);
+		serverUserPasswordPreference = (GenericOnOffSwitchPreference)findPreference(
+			serverUserPasswordPreferenceKey);
+		serverUserPasswordPreference.setPersistent(persistentState);
+		serverUserPasswordPreference.valueSet(AppState.stringGet(ServerPreferencesActivity.this,
+	   		ServersListFragment.SERVER_USER_PASSWORD_KEY, Utils.EMPTY_STRING));
+		serverUserPasswordPreference.setOnOffText(getString(R.string.genericPasswordShowLabel), 
+			getString(R.string.genericPasswordHideLabel));
+	    serverUserPasswordPreference.valueInputTypeSet(InputType.TYPE_CLASS_TEXT |
+	    	InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		serverUserPasswordPreference.onPreferenceClickListenerSet(new OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
 				LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		    	View view = (View)(inflater.inflate(R.layout.generic_dialog_edit_text, null));
+		    	View view = (View)(inflater.inflate(R.layout.generic_dialog_password, null));
 		    	
-		    	String userName = AppState.stringGet(ServerPreferencesActivity.this,
-		    		ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, Utils.EMPTY_STRING);
-		    	final EditText editText = (EditText)view.findViewById(R.id.genericDialogEditText);
-		    	editText.setText(userName);
+		    	String userPassword = AppState.stringGet(ServerPreferencesActivity.this,
+		    		ServersListFragment.SERVER_USER_PASSWORD_KEY, Utils.EMPTY_STRING);
+		    	final EditText passwordView = (EditText)view.findViewById(R.id.genericPasswordDialogPassword);
+		    	passwordView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		    	passwordView.setText(userPassword);
+		    	
+		    	final EditText confirmView = (EditText)view.findViewById(R.id.genericPasswordDialogConfirm);
+		    	confirmView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		    	confirmView.setText(userPassword);
+		    	
+		    	final GenericOnOffSwitch hideShowSwitch = (GenericOnOffSwitch)view.findViewById(
+		           	R.id.genericPasswordDialogHideShowSwitch);
+		    	hideShowSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		    		@Override
+		    		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		    			int inputType = InputType.TYPE_CLASS_TEXT;
+		    			if (!isChecked)
+		    				inputType |= InputType.TYPE_TEXT_VARIATION_PASSWORD;
+
+		    			passwordView.setInputType(inputType);
+		    			passwordView.setSelection(passwordView.getText().length());
+
+		    			confirmView.setInputType(inputType);
+		    			confirmView.setSelection(confirmView.getText().length());
+		    		}
+		    	});
 		    	
 		    	preferenceDialog = new GenericDialog(ServerPreferencesActivity.this, getString(
-		    		R.string.serverPreferencesServerUserNameDialogTitle), Utils.EMPTY_STRING, view);
-		    	preferenceDialog.positiveButtonListenerSet(new View.OnClickListener() {
-					@Override
+		    		R.string.serverPreferencesServerUserPasswordDialogTitle), Utils.EMPTY_STRING, view);
+		    	
+		    	preferenceDialog.positiveButtonListenerSet(R.string.genericApplyButtonLabel,
+		    		new View.OnClickListener() {
+				    @Override
 					public void onClick(View v) {
-						String name = editText.getText().toString();
-						if (!TextUtils.isEmpty(name))
-							name = name.trim();
+						String pass = (String)passwordView.getText().toString();
+						String conf = (String)confirmView.getText().toString();
 
+						if (pass.equals(conf)) {
+							if (!TextUtils.isEmpty(pass)) {
+								pass = pass.trim();
+								serverUserPasswordPreference.valueSet(pass);
+								AppState.stringSet(ServerPreferencesActivity.this,
+									ServersListFragment.SERVER_USER_PASSWORD_KEY, pass);
+								modified = true;
+							} else {
+								Utils.alertDialogShow(ServerPreferencesActivity.this, getString(
+									R.string.genericInvalidSetting), "The password is empty");
+							}
+						} else {
+							Utils.alertDialogShow(ServerPreferencesActivity.this, getString(
+								R.string.genericInvalidSetting), "The password and the confirmation are not " +
+									"the same");
+						}
+						
 						preferenceDialog.dismiss();
 					}
 				});
+		    	preferenceDialog.negativeButtonListenerSet(R.string.genericCancelButtonLabel,
+		    		new View.OnClickListener() {
+				    @Override
+					public void onClick(View v) {
+						AppState.logX(TAG, "applicationPasswordDialogCreate: negative button");
+
+						preferenceDialog.dismiss();
+				    }
+				});
+				
 		    	preferenceDialog.show();
 
 				return false;
 			}
 		});
+		serverUserPasswordPreference.onCheckedChangeListenerSet(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {				
+				int inputType = InputType.TYPE_CLASS_TEXT;
+    			if (!isChecked)
+    				inputType |= InputType.TYPE_TEXT_VARIATION_PASSWORD;
+				serverUserPasswordPreference.valueInputTypeSet(inputType);
+				serverUserPasswordPreference.stateSet(isChecked);
+			}
+		});
+		
 		serverExportDirectoriesPreferenceKey = getString(R.string.serverPreferencesServerExportDirectoriesKey);
 		serverExportDirectoriesPreference = (GenericStringListPreference)findPreference(
 			serverExportDirectoriesPreferenceKey);
@@ -558,15 +637,8 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 		AppState.logX(TAG, String.format("finish: resultCode = %d", resultCode));
 		
 		Intent data = new Intent();
-        data.putExtra(ServersListFragment.SERVER_HOST_NAME_KEY, AppState.stringGet(this,
-        	ServersListFragment.SERVER_HOST_NAME_KEY, Utils.EMPTY_STRING));
-        data.putExtra(ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, AppState.stringGet(this,
-            ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, Utils.EMPTY_STRING));
-        data.putExtra(ServersListFragment.SERVER_EXPORT_DIRECTORIES_KEY, AppState.stringGet(this,
-            ServersListFragment.SERVER_EXPORT_DIRECTORIES_KEY, Utils.EMPTY_STRING));
         data.putExtra(ServersListFragment.FRAGMENT_TAG, getIntent().getBundleExtra(
         	ServersListFragment.FRAGMENT_TAG));
-	       
         setResult(resultCode, data);
         		
 		super.finish();
@@ -577,13 +649,37 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 			ServersListFragment.SERVER_INTERNET_ADDRESS_KEY, Utils.EMPTY_STRING);
 		String serverHost = AppState.stringGet(ServerPreferencesActivity.this,
 			ServersListFragment.SERVER_HOST_NAME_KEY, Utils.EMPTY_STRING);
-		String serverExportsStr = AppState.stringGet(ServerPreferencesActivity.this,
+		String serverUserName = AppState.stringGet(ServerPreferencesActivity.this,
+			ServersListFragment.SERVER_USER_NAME_KEY, Utils.EMPTY_STRING);
+		String serverUserPassword = AppState.stringGet(ServerPreferencesActivity.this,
+			ServersListFragment.SERVER_USER_PASSWORD_KEY, Utils.EMPTY_STRING);
+		String[] serverExportsStr = AppState.stringArrayGet(ServerPreferencesActivity.this,
 			ServersListFragment.SERVER_EXPORT_DIRECTORIES_KEY, Utils.EMPTY_STRING);
 		
-		AppState.logX(TAG, String.format("preferencesSave: inet = %s, host = %s, exports = %d", serverAddr,
-			serverHost, serverExportsStr));
+		AppState.logX(TAG, String.format("preferencesSave: inet = %s, host = %s, user name = %s, exports = %s",
+			serverAddr, serverHost, serverUserName, Server.serverExportDirectoriesSet(serverExportsStr)));
 
-		if (TextUtils.isEmpty(serverAddr)) {
+		if (TextUtils.isEmpty(serverHost)) {
+			final GenericAlertDialog dialog = new GenericAlertDialog(this);
+			dialog
+			    .cancelableSet(false)
+			    .titleSet(R.string.genericConfirm)
+			    .messageSet("Invalid host name.")
+			    .positiveButtonSet(R.string.genericEditButtonLabel, new View.OnClickListener() {
+				    @Override
+				    public void onClick(View v) {
+					    dialog.dismiss();
+				    }
+			    })
+			    .negativeButtonSet(R.string.genericExitButtonLabel, new View.OnClickListener() {
+				    @Override
+				    public void onClick(View v) {
+					    dialog.dismiss();
+					    finish(RESULT_CANCELED);
+				    }
+			    });
+			dialog.show();
+		} else if (TextUtils.isEmpty(serverAddr)) {
 			final GenericAlertDialog dialog = new GenericAlertDialog(this);
 			dialog
 	            .cancelableSet(false)
@@ -603,12 +699,12 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 	                }
                 });
             dialog.show();
-		} else if (TextUtils.isEmpty(serverHost)) {
+		} else if (TextUtils.isEmpty(serverUserName)) {
 			final GenericAlertDialog dialog = new GenericAlertDialog(this);
 			dialog
 	            .cancelableSet(false)
                 .titleSet(R.string.genericConfirm)
-                .messageSet("Invalid host name.")
+                .messageSet("Invalid user name.")
                 .positiveButtonSet(R.string.genericEditButtonLabel, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -623,7 +719,27 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
 	                }
                 });
             dialog.show();
-		} else if (!TextUtils.isEmpty(serverExportsStr)) {
+		}  else if (TextUtils.isEmpty(serverUserPassword)) {
+			final GenericAlertDialog dialog = new GenericAlertDialog(this);
+			dialog
+	            .cancelableSet(false)
+                .titleSet(R.string.genericConfirm)
+                .messageSet("Invalid password.")
+                .positiveButtonSet(R.string.genericEditButtonLabel, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+		                dialog.dismiss();
+	                }
+                })
+                .negativeButtonSet(R.string.genericExitButtonLabel, new View.OnClickListener() {
+        	        @Override
+	                public void onClick(View v) {
+		                dialog.dismiss();
+				        finish(RESULT_CANCELED);
+	                }
+                });
+            dialog.show();
+		} else if (serverExportsStr == null || serverExportsStr.length == 0) {
 			final GenericAlertDialog dialog = new GenericAlertDialog(this);
 			dialog
 	            .cancelableSet(false)
@@ -644,7 +760,8 @@ public class ServerPreferencesActivity extends GenericPreferencesActivity {
                 });
             dialog.show();
 		} else {
-			Server server = new Server(serverHost, serverAddr, serverExportsStr);
+			Server server = new Server(serverHost, serverAddr, serverUserName, serverUserPassword,
+				serverExportsStr);
 			
 			if (isNewServer)
 				AppState.serversAdd(this, server);

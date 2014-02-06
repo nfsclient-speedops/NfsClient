@@ -57,15 +57,15 @@
     <string name="serverPreferencesServerHostNameKey">serverPreferencesHostNameKey</string>
     <string name="serverPreferencesServerHostNameDialogTitle">Server host name</string>
     
-    <string name="serverPreferencesServerUserNameTitle">User name</string>
-    <string name="serverPreferencesServerUserNameSummary">Set the user name</string>
+    <string name="serverPreferencesServerUserNameTitle">Server user name</string>
+    <string name="serverPreferencesServerUserNameSummary">Set the server user name</string>
     <string name="serverPreferencesServerUserNameKey">serverPreferencesUserNameKey</string>
     <string name="serverPreferencesServerUserNameDialogTitle">User name</string>
     
-    <string name="serverPreferencesServerPasswordTitle">Password</string>
-    <string name="serverPreferencesServerPasswordSummary">Set the user password</string>
-    <string name="serverPreferencesServerPasswordKey">serverPreferencesPasswordKey</string>
-    <string name="serverPreferencesServerPasswordDialogTitle">Password</string>
+    <string name="serverPreferencesServerUserPasswordTitle">Server user password</string>
+    <string name="serverPreferencesServerUserPasswordSummary">Set the server user password</string>
+    <string name="serverPreferencesServerUserPasswordKey">serverPreferencesUserPasswordKey</string>
+    <string name="serverPreferencesServerUserPasswordDialogTitle">User password</string>
     
     <string name="serverPreferencesServerExportDirectoriesTitle">Server export directories</string>
     <string name="serverPreferencesServerExportDirectoriesSummary">Set the server export directories</string>
@@ -319,6 +319,13 @@
     <string name="genericRetryButtonLabel">Retry</string>
     <string name="genericAcceptButtonLabel">Accept</string>
     <string name="genericDeclineButtonLabel">Decline</string>
+    <string name="genericPasswordLabel">Password:</string>
+    <string name="genericPasswordConfirmLabel">Confirm:</string>
+    <string name="genericPasswordShowPasswordLabel">Show/Hide:</string>
+    <string name="genericPasswordShowLabel">Show</string>
+    <string name="genericPasswordHideLabel">Hide</string>
+    <string name="genericSwitchOn">ON</string>
+    <string name="genericSwitchOff">OFF</string>
     <!-- end utility strings -->
     
     <!-- start about preferences activity strings -->

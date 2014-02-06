@@ -16,7 +16,6 @@
 
 package com.app.nfsclient.filemanager;
 
-import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +25,8 @@ import java.util.List;
 import com.app.nfsclient.R;
 import com.app.nfsclient.filemanager.util.FileUtils;
 import com.app.nfsclient.filemanager.util.MimeTypes;
+import com.app.nfsclient.generic.GenericFileInterface;
+import com.app.nfsclient.generic.GenericFileSystem;
 
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +43,7 @@ public class DirectoryScanner extends Thread {
 
 	private static final String TAG = "OIFM_DirScanner";
 	
-	private File currentDirectory;
+	private GenericFileInterface currentDirectory;
 	public boolean cancel;
 
 	private String mSdCardPath;
@@ -67,7 +68,7 @@ public class DirectoryScanner extends Thread {
     
 
 
-	public DirectoryScanner(File directory, Context context, Handler handler, MimeTypes mimeTypes, String sdCardPath, boolean writeableOnly, boolean directoriesOnly) {
+	public DirectoryScanner(GenericFileSystem fileSystem, GenericFileInterface directory, Context context, Handler handler, MimeTypes mimeTypes, String sdCardPath, boolean writeableOnly, boolean directoriesOnly) {
 		super("Directory Scanner");
 		currentDirectory = directory;
 		this.context = context;
@@ -88,7 +89,7 @@ public class DirectoryScanner extends Thread {
 	public void run() {
 		Log.v(TAG, "Scanning directory " + currentDirectory);
 		
-		File[] files = currentDirectory.listFiles();
+		GenericFileInterface[] files = currentDirectory.listFiles();
 
 		int fileCount = 0;
 		int dirCount = 0;
@@ -133,7 +134,7 @@ public class DirectoryScanner extends Thread {
 		Drawable currentIcon = null; 
 		
 		if (files != null) {
-			for (File currentFile : files){ 
+			for (GenericFileInterface currentFile : files){ 
 				if (cancel) {
 					// Abort!
 					Log.v(TAG, "Scan aborted while checking files");
@@ -256,7 +257,7 @@ public class DirectoryScanner extends Thread {
      * @param mimetype
      * @return
      */
-    Drawable getDrawableForMimetype(File file, String mimetype) {
+    Drawable getDrawableForMimetype(GenericFileInterface file, String mimetype) {
      if (mimetype == null) {
     	 return null;
      }

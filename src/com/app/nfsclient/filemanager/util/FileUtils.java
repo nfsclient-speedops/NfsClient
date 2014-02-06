@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2014 SpeedOps
+ * All rights reserved.
+ *
+ * SpeedOps is not responsible for any use or misuse of this product.
+ * In using this software you agree to hold harmless SpeedOps and any other
+ * contributors to this project from any damages or liabilities which might result 
+ * from its use.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 /* 
  * Copyright (C) 2007-2008 OpenIntents.org
  *
@@ -16,7 +31,8 @@
 
 package com.app.nfsclient.filemanager.util;
 
-import java.io.File;
+import com.app.nfsclient.generic.GenericFileInterface;
+import com.app.nfsclient.generic.GenericFileSystem;
 
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
@@ -103,9 +119,9 @@ public class FileUtils {
 	 * @param file
 	 * @return uri
 	 */
-	public static Uri getUri(File file) {
+	public static Uri getUri(GenericFileInterface file) {
 		if (file != null) {
-			return Uri.fromFile(file);
+			return Uri.fromFile(file.getNativeFile());
 		}
 		return null;
 	}
@@ -115,11 +131,11 @@ public class FileUtils {
 	 * @param uri
 	 * @return file
 	 */
-	public static File getFile(Uri uri) {
+	public static GenericFileInterface getFile(GenericFileSystem fileSystem, Uri uri) {
 		if (uri != null) {
 			String filepath = uri.getPath();
 			if (filepath != null) {
-				return new File(filepath);
+				return fileSystem.fileInstanceGet(filepath);
 			}
 		}
 		return null;
@@ -130,7 +146,8 @@ public class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static File getPathWithoutFilename(File file) {
+	public static GenericFileInterface getPathWithoutFilename(GenericFileSystem fileSystem,
+		GenericFileInterface file) {
 		 if (file != null) {
 			 if (file.isDirectory()) {
 				 // no file to be split off. Return everything
@@ -144,7 +161,7 @@ public class FileUtils {
 				 if (pathwithoutname.endsWith("/")) {
 					 pathwithoutname = pathwithoutname.substring(0, pathwithoutname.length() - 1);
 				 }
-				 return new File(pathwithoutname);
+				 return fileSystem.fileInstanceGet(pathwithoutname);
 			 }
 		 }
 		 return null;
@@ -157,17 +174,18 @@ public class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static File getFile(String curdir, String file) {
+	public static GenericFileInterface getFile(GenericFileSystem fileSystem, String curdir,
+		String file) {
 		String separator = "/";
 		  if (curdir.endsWith("/")) {
 			  separator = "";
 		  }
-		   File clickedFile = new File(curdir + separator
-		                       + file);
+		  GenericFileInterface clickedFile = fileSystem.fileInstanceGet(curdir + separator + file);
 		return clickedFile;
 	}
 	
-	public static File getFile(File curdir, String file) {
-		return getFile(curdir.getAbsolutePath(), file);
+	public static GenericFileInterface getFile(GenericFileSystem fileSystem,
+		GenericFileInterface curdir, String file) {
+		return getFile(fileSystem, curdir.getAbsolutePath(), file);
 	}
 }

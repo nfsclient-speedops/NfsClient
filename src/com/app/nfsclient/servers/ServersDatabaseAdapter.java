@@ -47,8 +47,16 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
     public static final int KEY_SERVER_HOST_NAME_INDEX = 1;
     public static final String KEY_SERVER_INTERNET_ADDRESS = "serverInternetAddress";
     public static final int KEY_SERVER_INTERNET_ADDRESS_INDEX = 2;
+    public static final String KEY_SERVER_USER_NAME = "serverUserName";
+    public static final int KEY_SERVER_USER_NAME_INDEX = 3;
+    public static final String KEY_SERVER_USER_PASSWORD = "serverUserPassword";
+    public static final int KEY_SERVER_USER_PASSWORD_INDEX = 4;
+    public static final String KEY_LOCAL_MOUNT_DIRECTORY = "localMountDirectory";
+    public static final int KEY_LOCAL_MOUNT_DIRECTORY_INDEX = 5;
+    public static final String KEY_SERVER_MOUNT_OPTIONS = "serverMountOptions";
+    public static final int KEY_SERVER_MOUNT_OPTIONS_INDEX = 6;
     public static final String KEY_SERVER_EXPORT_DIRECTORIES = "serverExportDirectories";
-    public static final int KEY_SERVER_EXPORT_DIRECTORIES_INDEX = 3;
+    public static final int KEY_SERVER_EXPORT_DIRECTORIES_INDEX = 7;
     public static final String KEY_SERVER_ROW_ID = "_id";
     
     public static final String SERVERS_TABLE = "serversTable";
@@ -56,6 +64,10 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
     public static final String[] serversTableColumns = {
     	KEY_SERVER_HOST_NAME,
     	KEY_SERVER_INTERNET_ADDRESS,
+    	KEY_SERVER_USER_NAME,
+    	KEY_SERVER_USER_PASSWORD,
+    	KEY_LOCAL_MOUNT_DIRECTORY,
+    	KEY_SERVER_MOUNT_OPTIONS,
     	KEY_SERVER_EXPORT_DIRECTORIES,
     	KEY_SERVER_ROW_ID
     };
@@ -65,6 +77,10 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
     	"(" +
         KEY_SERVER_HOST_NAME + " COLLATE NOCASE," +
         KEY_SERVER_INTERNET_ADDRESS + " VARCHAR," +
+        KEY_SERVER_USER_NAME + " VARCHAR," +
+        KEY_SERVER_USER_PASSWORD + " VARCHAR," +
+        KEY_LOCAL_MOUNT_DIRECTORY + " VARCHAR," +
+        KEY_SERVER_MOUNT_OPTIONS + " VARCHAR," +
         KEY_SERVER_EXPORT_DIRECTORIES + " VARCHAR," +
         KEY_SERVER_ROW_ID + " integer primary key" +
         ");"; 
@@ -74,9 +90,13 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
         "(" +
         KEY_SERVER_HOST_NAME + "," +
         KEY_SERVER_INTERNET_ADDRESS + "," +
+        KEY_SERVER_USER_NAME + "," +
+        KEY_SERVER_USER_PASSWORD + "," +
+        KEY_LOCAL_MOUNT_DIRECTORY + "," +
+        KEY_SERVER_MOUNT_OPTIONS + "," +
         KEY_SERVER_EXPORT_DIRECTORIES + "," +
         KEY_SERVER_ROW_ID +
-        ") values (?, ?, ?, ?);";
+        ") values (?, ?, ?, ?, ?, ?, ?, ?);";
     protected static final String SERVERS_TABLE_DROP = "drop table if exists " + SERVERS_TABLE;
     
     public ServersDatabaseAdapter(Context context) {
@@ -94,7 +114,7 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
 
     // insert a server
     public void insert(GenericListItem item) {
-    	AppState.logX(TAG, String.format("insert 1: server = %s", item.primaryNameGet()));
+    	AppState.logX(TAG, String.format("insert 1: server = %s", item.firstGet()));
         
     	Server server = (Server)item;
     	SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -110,14 +130,16 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
         SQLiteStatement serversTableInsertStmt = database.compileStatement(SERVERS_TABLE_INSERT);
         serversTableInsertStmt.bindString(KEY_SERVER_HOST_NAME_INDEX, server.serverHostNameGet());
         serversTableInsertStmt.bindString(KEY_SERVER_INTERNET_ADDRESS_INDEX, server.serverInternetAddressGet());
-        serversTableInsertStmt.bindString(KEY_SERVER_EXPORT_DIRECTORIES_INDEX, server
-        	.serverExportDirectoriesStringGet());
+        serversTableInsertStmt.bindString(KEY_SERVER_USER_NAME_INDEX, server.serverUserNameGet());
+        serversTableInsertStmt.bindString(KEY_SERVER_USER_PASSWORD_INDEX, server.serverUserPasswordGet());
+        serversTableInsertStmt.bindString(KEY_SERVER_EXPORT_DIRECTORIES_INDEX, Server
+        	.serverExportDirectoriesStringGet(server.serverExportDirectoriesGet()));
         serversTableInsertStmt.executeInsert();
         serversTableInsertStmt.close();
         
     	AppState.logX(TAG, String.format("insert 3: server = %s, inet addr = %s, exports = %s",
-    		server.serverHostNameGet(), server.serverInternetAddressGet(), server
-    	    .serverExportDirectoriesStringGet()));
+    		server.serverHostNameGet(), server.serverInternetAddressGet(), Server
+    	    .serverExportDirectoriesStringGet(server.serverExportDirectoriesGet())));
     }
     
     // update a server
@@ -129,13 +151,16 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
     // update a server
     public static void update(SQLiteDatabase database, String table, GenericListItem item) {
         AppState.log(TAG, String.format("update 3: database = %s, table = %s, name = %s", database, table,
-        	item.primaryNameGet()));
+        	item.firstGet()));
 
         Server server = (Server)item;
         ContentValues values = new ContentValues();
     	values.put(KEY_SERVER_HOST_NAME, server.serverHostNameGet());
         values.put(KEY_SERVER_INTERNET_ADDRESS, server.serverInternetAddressGet());
-        values.put(KEY_SERVER_EXPORT_DIRECTORIES, server.serverExportDirectoriesStringGet());
+        values.put(KEY_SERVER_USER_NAME, server.serverUserNameGet());
+        values.put(KEY_SERVER_USER_PASSWORD, server.serverUserPasswordGet());
+        values.put(KEY_SERVER_EXPORT_DIRECTORIES, Server.serverExportDirectoriesStringGet(server
+        	.serverExportDirectoriesGet()));
         database.update(table, values, KEY_SERVER_HOST_NAME + "=" + server.serverHostNameGet(), null);
     }
     
@@ -224,16 +249,18 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
     			
         String hostName = cursor.getString(cursor.getColumnIndex(KEY_SERVER_HOST_NAME));
 		String inetAddr = cursor.getString(cursor.getColumnIndex(KEY_SERVER_INTERNET_ADDRESS));
+		String userName = cursor.getString(cursor.getColumnIndex(KEY_SERVER_USER_NAME));
+		String userPassword = cursor.getString(cursor.getColumnIndex(KEY_SERVER_USER_PASSWORD));
         String exportsStr = cursor.getString(cursor.getColumnIndex(KEY_SERVER_EXPORT_DIRECTORIES));
 
         List<String> exportsList = new ArrayList<String>();
         for (String export : exportsStr.split(Server.EXPORT_DIRECTORIES_SEPARATOR)) 
         	exportsList.add(export);
 
-		AppState.logX(TAG, String.format("serversGenerateFromCursor 1: host name = %s, inet addr = %s, exports" +
-			" = %s", hostName, inetAddr, exportsStr));
+		AppState.logX(TAG, String.format("serversGenerateFromCursor 1: host name = %s, inet addr = %s, " +
+			"exports = %s", hostName, inetAddr, exportsStr));
 	    	
-		return new Server(hostName, inetAddr, exportsList);
+		return new Server(hostName, inetAddr, userName, userPassword, exportsList);
     }
     
     private Server serversGenerateFromCursor(Cursor cursor, SQLiteDatabase database) {
@@ -246,7 +273,7 @@ public class ServersDatabaseAdapter implements GenericDatabaseAdapterInterface {
    
     // delete a server from the servers table
     public static String deletionWhereClause(GenericListItem item) {
-    	return KEY_SERVER_INTERNET_ADDRESS + "=" + item.primaryNameGet();
+    	return KEY_SERVER_INTERNET_ADDRESS + "=" + item.firstGet();
     }
     public void serversTableDelete(Server server) {
         AppState.log(TAG, "serversTableDelete");

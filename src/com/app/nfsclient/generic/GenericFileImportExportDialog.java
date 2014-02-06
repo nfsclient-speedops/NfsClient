@@ -82,15 +82,15 @@ public class GenericFileImportExportDialog extends GenericDialog {
 
     	// initialize the first locations adapter to the local storage
         GenericListItemList locationsList = new GenericListItemList();
-    	locationsList.add(GenericListItem.ITEM_TYPE_STORAGE_LOCATION_LOCAL, GenericListItem
-    		.ITEM_TYPE_STORAGE_LOCATION_LOCAL);
+    	locationsList.add(GenericListItem.ITEM_TYPE_LOCAL_STORAGE, GenericListItem
+    		.ITEM_TYPE_LOCAL_STORAGE);
     	providerLocationsAdapters[0] = new GenericSpinnerAdapter(context, locationsList);
 
     	// initialize the adapters for the cloud storage providers
     	final GenericListItemList cloudProviders = AppState.cloudStorageProvidersGet(context);
         for (int i = 0; i < cloudProviders.size(); i++) {
         	providerLocationsAdapters[i + 1] = new GenericSpinnerAdapter(context,
-        		AppState.storageProviderLocationsGetByProvider(context, cloudProviders.get(i).primaryNameGet()));
+        		AppState.storageProviderLocationsGetByProvider(context, cloudProviders.get(i).firstGet()));
        	}
     	
         // providers
@@ -162,7 +162,7 @@ public class GenericFileImportExportDialog extends GenericDialog {
         
     	if (providers.size() == 1) {
     		GenericListItemList locations = AppState.storageProviderLocationsGetByProvider(context,
-    			providers.get(0).primaryNameGet());
+    			providers.get(0).firstGet());
             AppState.logX(TAG, String.format("show: locations.size = %d", locations.size()));
 
     		if (locations.size() == 1) 
@@ -200,7 +200,7 @@ public class GenericFileImportExportDialog extends GenericDialog {
 			GenericListItem location = (GenericListItem)locationsSpinner.getSelectedItem();
 
 			selectionActivityStart(provider, location);
-			if (provider.itemTypeGet().equalsIgnoreCase(GenericListItem.ITEM_TYPE_STORAGE_LOCATION_LOCAL)) {
+			if (provider.itemTypeGet().equalsIgnoreCase(GenericListItem.ITEM_TYPE_LOCAL_STORAGE)) {
 				Intent intent = new Intent(context, FileManagerActivity.class);
 				Uri uriFile = Uri.parse(AppState.appDataDirectoryFileGet(context).getAbsolutePath());
                 int requestCode = selectionType | GenericListItem
@@ -224,10 +224,10 @@ public class GenericFileImportExportDialog extends GenericDialog {
 	
 	public void selectionActivityStart(GenericListItem provider, GenericListItem location) {
 		AppState.logX(TAG, String.format("selectionActivityStart: provider = %s, location = %s",
-			provider.primaryNameGet(), location.primaryNameGet()));
+			provider.firstGet(), location.firstGet()));
 
 		// storage locations
-		if (provider.itemTypeGet().equalsIgnoreCase(GenericListItem.ITEM_TYPE_STORAGE_PROVIDER_LOCAL)) {
+		if (provider.itemTypeGet().equalsIgnoreCase(GenericListItem.ITEM_TYPE_LOCAL_STORAGE)) {
 			Intent intent = new Intent(context, FileManagerActivity.class);
 			Uri uriFile = Uri.parse(AppState.appDataDirectoryFileGet(context).getAbsolutePath());
             int requestCode = selectionType | GenericListItem

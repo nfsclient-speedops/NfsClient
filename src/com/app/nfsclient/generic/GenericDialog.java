@@ -186,7 +186,7 @@ public class GenericDialog extends Dialog {
 		this.view = view;
 	}
 	
-	public void setPositiveButton(int label, View.OnClickListener listener) {
+	public void positiveButtonListenerSet(int label, View.OnClickListener listener) {
 		positiveButtonLabel = label;
 		positiveButtonListener = listener;
 	}
@@ -194,7 +194,7 @@ public class GenericDialog extends Dialog {
 		this.positiveButtonListener = positiveButtonListener;
 	}
 	
-	public void setNegativeButton(int label, View.OnClickListener listener) {
+	public void negativeButtonListenerSet(int label, View.OnClickListener listener) {
 	    negativeButtonLabel = label;
 	    negativeButtonListener = listener;
 	}

@@ -91,7 +91,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/fileFormatSpinnerLabel"/>
 
-            <com.app.mux.generic.GenericIcsSpinner
+            <com.app.nfsclient.generic.GenericIcsSpinner
                 android:id="@+id/file_format_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

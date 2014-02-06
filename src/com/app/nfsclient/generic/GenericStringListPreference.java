@@ -64,7 +64,7 @@ public class GenericStringListPreference extends Preference {
         super.onBindView(view);
         AppState.logX(TAG, "onBindView");
 
-        if ((containerView = (LinearLayout)view.findViewById(R.id.genericPreferenceContainer)) != null) {
+        if ((containerView = (LinearLayout)view.findViewById(R.id.genericPreferenceValue)) != null) {
             if (list != null && list.size() > 0) {
                 LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
                 for (String directory : list) {

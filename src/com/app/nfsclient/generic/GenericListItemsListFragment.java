@@ -31,7 +31,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -110,7 +109,6 @@ public abstract class GenericListItemsListFragment extends SherlockListFragment 
     protected ListView listView = null;
     protected List<GenericListItem> list = null;
     protected GenericListAdapter listAdapter = null;
-    protected Handler listItemButtonHandler = null;
     protected boolean initialized = false;
         
     protected Button applyButton;
@@ -187,8 +185,7 @@ public abstract class GenericListItemsListFragment extends SherlockListFragment 
 			String title = String.format(format, titleViewPluralsParams);
 			titleView.setText(title);
 
-		    listAdapter = new GenericListItemsAdapter(getActivity(), this, itemLayoutId, list,
-		    	listItemButtonHandler);
+		    listAdapter = new GenericListItemsAdapter(getActivity(), itemLayoutId, list);
 
 			if ((listView = getListView()) == null)		
 				listView = (ListView)activity.findViewById(listViewId);

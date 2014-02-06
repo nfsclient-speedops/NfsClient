@@ -30,7 +30,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.app.nfsclient.AppState;
 import com.app.nfsclient.Utils;
 import com.app.nfsclient.filemanager.intents.FileManagerIntents;
-import com.dropbox.chooser.android.DbxChooser;
 
 public class GenericFileImportExportActivity extends SherlockActivity {
     private static final String TAG = "GenericFileImportExportSelectionActivity";
@@ -171,24 +170,6 @@ public class GenericFileImportExportActivity extends SherlockActivity {
 							GenericAsyncTask.THREAD_POOL_EXECUTOR);
 						intent.putExtra(FILE_NAME_KEY, filename);
 					}
-				}
-				break;
-
-			case GenericListItem.ACTIVITY_RESULT_FILE_SELECTION_PROVIDER_DROPBOX_CHOOSER:
-				AppState.logX(TAG, "onActivityResult: dropbox chooser");
-
-				if (resultCode == Activity.RESULT_OK && data != null) {
-					DbxChooser.Result dbxResult = new DbxChooser.Result(data);
-
-					if (selectionTypeSuper == GenericListItem.ACTIVITY_RESULT_FILE_SELECTION_TYPE_IMPORT) {
-
-					} else if (selectionTypeSuper == GenericListItem.ACTIVITY_RESULT_FILE_SELECTION_TYPE_EXPORT)
-					    {
-
-					}
-
-					AppState.logX(TAG, String.format("onActivityResult: import result: name = %s, link = %s, " +
-						"size = %d", dbxResult.getName(), dbxResult.getLink(), dbxResult.getSize()));
 				}
 				break;
 

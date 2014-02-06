@@ -20,27 +20,39 @@
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:baselineAligned="false"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/genericListItemLayout"
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_weight="1">
-          
-        <TextView
-            android:id="@+id/genericListItemPrimaryName"
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
-            android:textIsSelectable="false"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:textSize="@dimen/primary_name_text_size"
-            android:typeface="monospace"
-            android:layout_marginTop="10dip"
-            android:layout_marginBottom="10dip"
-            android:gravity="center_vertical|center_horizontal"/>
-    </LinearLayout>    
+    <!-- empty spacer -->
+    <View
+        android:layout_height="@dimen/default_line_spacer_height"
+        android:layout_width="match_parent">
+    </View>
+    
+    <TextView
+        android:id="@+id/genericListItemPrimaryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="false"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textSize="@dimen/primary_name_text_size"
+        android:typeface="monospace"
+        android:gravity="center_horizontal"/>
+ 
+    <TextView
+        android:id="@+id/genericListItemSecondaryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="false"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textSize="@dimen/secondary_name_text_size"
+        android:typeface="monospace"
+        android:gravity="center_horizontal"/>
+    
+    <!-- empty spacer -->
+    <View
+        android:layout_height="@dimen/default_line_spacer_height"
+        android:layout_width="match_parent">
+    </View>
 </LinearLayout>

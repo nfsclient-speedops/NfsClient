@@ -423,7 +423,7 @@ public class XFile {
     /*
      * Get the native file
      */
-    private File getNative() {
+    protected File getNative() {
         return nativeFile;
     }
 

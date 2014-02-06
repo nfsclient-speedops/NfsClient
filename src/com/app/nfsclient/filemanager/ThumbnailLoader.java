@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2014 SpeedOps
+ * All rights reserved.
+ *
+ * SpeedOps is not responsible for any use or misuse of this product.
+ * In using this software you agree to hold harmless SpeedOps and any other
+ * contributors to this project from any damages or liabilities which might result 
+ * from its use.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 /* 
  * Copyright (C) 2007-2011 OpenIntents.org
  *
@@ -16,12 +31,13 @@
 
 package com.app.nfsclient.filemanager;
 
-import java.io.File;
 import java.util.List;
 
 import com.app.nfsclient.filemanager.compatibility.BitmapDrawable_Compatible;
 import com.app.nfsclient.filemanager.util.FileUtils;
 import com.app.nfsclient.filemanager.util.MimeTypes;
+import com.app.nfsclient.generic.GenericFileInterface;
+import com.app.nfsclient.generic.GenericFileSystem;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -36,9 +52,10 @@ public class ThumbnailLoader extends Thread {
 
 	private static final String TAG = "OIFM_ThumbnailLoader";
 	
+	GenericFileSystem fileSystem;
     List<IconifiedText> listFile;
     public boolean cancel;
-    File file;
+    GenericFileInterface file;
     Handler handler;
     Context context;
 
@@ -48,9 +65,10 @@ public class ThumbnailLoader extends Thread {
     private static int thumbnailHeight = 32;
     
 	
-	public ThumbnailLoader(File file, List<IconifiedText> list, Handler handler, Context context, MimeTypes mimetypes) {
+	public ThumbnailLoader(GenericFileSystem fileSystem, GenericFileInterface file, List<IconifiedText> list, Handler handler, Context context, MimeTypes mimetypes) {
 		super("Thumbnail Loader");
 		
+		this.fileSystem = fileSystem;
 		listFile = list;
 		this.file = file;
 		this.handler = handler;
@@ -91,7 +109,7 @@ public class ThumbnailLoader extends Thread {
 					continue;
 				}
 				
-				BitmapFactory.decodeFile(FileUtils.getFile(file, fileName).getPath(), options);
+				BitmapFactory.decodeFile(FileUtils.getFile(fileSystem, file, fileName).getPath(), options);
 				
 				if (options.outWidth > 0 && options.outHeight > 0) {
 					// Now see how much we need to scale it down.
@@ -114,7 +132,7 @@ public class ThumbnailLoader extends Thread {
 					options.inSampleSize = widthFactor;
 					options.inJustDecodeBounds = false;
 					
-					Bitmap bitmap = BitmapFactory.decodeFile(FileUtils.getFile(file, fileName).getPath(), options);
+					Bitmap bitmap = BitmapFactory.decodeFile(FileUtils.getFile(fileSystem, file, fileName).getPath(), options);
 				
 					if (bitmap != null) {
 //						Log.v(TAG, "Got thumbnail for " + text.getText());

@@ -97,4 +97,29 @@
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:src">@drawable/ic_menu_remove_field_holo_light</item>
     </style>
+    
+    <style name="genericOnOffSwitchStyle">
+        <item name="track">@drawable/switch_bg</item>
+        <item name="thumb">@drawable/track_bg</item>
+        <item name="switchTextAppearanceAttrib">@style/genericOnOffSwitchTextAppearance</item>
+        <item name="textOn">ON</item>
+        <item name="textOff">OFF</item>
+        <item name="pushStyle">false</item>
+        <item name="textOnThumb">true</item>
+        <item name="thumbExtraMovement">0dp</item>
+        <item name="thumbTextPadding">6dp</item>
+        <item name="trackTextPadding">6dp</item>
+        <item name="switchMinWidth">69dp</item>
+        <item name="switchMinHeight">36dp</item>
+        <item name="switchPadding">6dp</item>
+    </style>
+
+    <style name="genericOnOffSwitchTextAppearance">
+        <item name="textColor">@color/black</item>
+        <item name="textColorHighlight">@color/black</item>
+        <item name="textColorHint">@color/black</item>
+        <item name="textColorLink">@color/black</item>
+        <item name="textSize">12sp</item>
+        <item name="textStyle">normal</item>
+    </style>
 </resources>

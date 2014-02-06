@@ -56,7 +56,7 @@ public class GenericSpinnerAdapter implements SpinnerAdapter {
 			int textColor = Background.textColorGet(context);
 			
             textView.setBackgroundColor(background);
-            textView.setText(items.get(position).primaryNameGet()); 
+            textView.setText(items.get(position).firstGet()); 
             textView.setTextColor(textColor);
             textView.setTypeface(Typeface.DEFAULT_BOLD);
         }
@@ -75,7 +75,7 @@ public class GenericSpinnerAdapter implements SpinnerAdapter {
 			int textColor = Background.textColorGet(context);
 			
             textView.setBackgroundColor(background);
-            textView.setText(items.get(position).primaryNameGet()); 
+            textView.setText(items.get(position).firstGet()); 
             textView.setTextColor(textColor);
             textView.setTypeface(Typeface.DEFAULT_BOLD);
         }

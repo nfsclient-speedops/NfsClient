@@ -63,31 +63,12 @@
             android:theme="@style/PreferencesTheme.black">
         </activity>
         
-<!--
-       <activity
-            android:name="com.app.nfsclient.App"
-            android:theme="@style/PreferencesTheme.black">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/>
-	            <category android:name="android.intent.category.DEFAULT"/>
-	            <category android:name="android.intent.category.BROWSABLE"/>
-	            <category android:name="android.intent.category.LAUNCHER"/>
-   	        </intent-filter>
-        </activity>
-        
         <activity
-            android:name="com.app.nfsclient.FullscreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            android:name="com.app.nfsclient.filemanager.FileManagerActivity"
+            android:label=""
+            android:theme="@style/PreferencesTheme.black">
         </activity>
--->
+
     </application>
 
 </manifest>

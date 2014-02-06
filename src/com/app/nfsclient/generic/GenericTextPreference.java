@@ -32,7 +32,7 @@ public class GenericTextPreference extends Preference {
     @SuppressWarnings("unused")
 	private static final String TAG = "GenericTextPreference";
     
-    private LinearLayout containerView = null;
+    private LinearLayout valueView = null;
     private String value = null;
     
     /**
@@ -61,17 +61,17 @@ public class GenericTextPreference extends Preference {
     protected void onBindView(View view) {
         super.onBindView(view); 
         
-        if ((containerView = (LinearLayout)view.findViewById(R.id.genericPreferenceContainer)) != null) {
+        if ((valueView = (LinearLayout)view.findViewById(R.id.genericPreferenceValue)) != null) {
         	if (!TextUtils.isEmpty(value)) {
         		LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
-        		LinearLayout exportLayout = (LinearLayout)inflater.inflate(R.layout.generic_preference_value,
+        		LinearLayout valueLayout = (LinearLayout)inflater.inflate(R.layout.generic_preference_value,
         			null);
-        		TextView nameView = (TextView)exportLayout.findViewById(R.id.genericPreferenceValueName);
+        		TextView nameView = (TextView)valueLayout.findViewById(R.id.genericPreferenceValueName);
         		nameView.setText(value);
         		nameView.setTextColor(getContext().getResources().getColor(R.color.red));
-        		containerView.addView(exportLayout);
+        		valueView.addView(valueLayout);
         	} else {
-        		containerView.setVisibility(View.GONE);
+        		valueView.setVisibility(View.GONE);
         	}
         }
     }

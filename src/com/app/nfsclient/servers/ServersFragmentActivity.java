@@ -52,6 +52,9 @@ public class ServersFragmentActivity extends GenericFragmentActivity {
         case GenericListItem.ACTIVITY_RESULT_LIST_REFRESH:
 			AppState.logX(TAG, "onActivityResult: ACTIVITY_RESULT_LIST_REFRESH"); 
 
+        case GenericListItem.ACTIVITY_RESULT_ACCOUNT_EDIT:
+			AppState.logX(TAG, "onActivityResult: ACTIVITY_RESULT_ACCOUNT_EDIT"); 
+
         case GenericListItem.ACTIVITY_RESULT_ACCOUNT_CONNECT:
 			AppState.logX(TAG, "onActivityResult: ACTIVITY_RESULT_ACCOUNT_CONNECT"); 
 
@@ -61,7 +64,7 @@ public class ServersFragmentActivity extends GenericFragmentActivity {
 				AppState.logX(TAG, String.format("onActivityResult: connect returned = %s",
 					accountName));
 				
-				// retrieve the fragment sent to the connect activity
+				// retrieve the fragment sent to the activity
 				GenericListItemsListFragment fragment =
 					(GenericListItemsListFragment)getSupportFragmentManager().getFragment(
 						data.getBundleExtra(fragmentTag), fragmentTag);

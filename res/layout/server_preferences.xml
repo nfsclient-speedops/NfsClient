@@ -37,10 +37,10 @@
             android:summary="@string/serverPreferencesServerUserNameSummary"
             android:key="@string/serverPreferencesServerUserNameKey"/>
   
-        <com.app.nfsclient.generic.GenericTextPreference
-            android:title="@string/serverPreferencesServerPasswordTitle"
-            android:summary="@string/serverPreferencesServerPasswordSummary"
-            android:key="@string/serverPreferencesServerPasswordKey"/>
+        <com.app.nfsclient.generic.GenericOnOffSwitchPreference
+            android:title="@string/serverPreferencesServerUserPasswordTitle"
+            android:summary="@string/serverPreferencesServerUserPasswordSummary"
+            android:key="@string/serverPreferencesServerUserPasswordKey"/>
   
         <com.app.nfsclient.generic.GenericStringListPreference
             android:title="@string/serverPreferencesServerExportDirectoriesTitle"

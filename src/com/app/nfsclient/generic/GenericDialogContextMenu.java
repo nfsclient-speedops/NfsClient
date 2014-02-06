@@ -22,13 +22,9 @@ import com.app.nfsclient.AppState;
 import com.app.nfsclient.Background;
 import com.app.nfsclient.R;
 import com.app.nfsclient.Utils;
-import com.app.nfsclient.images.ImagesUtils;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -114,18 +110,9 @@ public class GenericDialogContextMenu extends Dialog {
 	
 	public static class GenericDialogContextMenuItem extends GenericListItem {
 		private static final String TAG = "GenericDialogContextMenuItem";
-		
-		private int imageResid;
-		
-		public GenericDialogContextMenuItem(String itemName, int imageResid) {
+				
+		public GenericDialogContextMenuItem(String itemName) {
 			super(GenericListItem.ITEM_TYPE_GENERIC_LIST_ITEM_OBJECT, itemName, Utils.EMPTY_STRING);
-			AppState.logX(TAG, String.format("constructor: itemName = %s", itemName));
-			
-			this.imageResid = imageResid;
-		}
-		
-		public int imageResidGet() {
-			return imageResid;
 		}
 	}
 	
@@ -154,21 +141,11 @@ public class GenericDialogContextMenu extends Dialog {
 			
 			final GenericDialogContextMenuItem item = items.get(position);
 			if (item != null) {
-				AppState.logX(TAG, String.format("getView: itemName = %s", item.primaryNameGet()));
+				AppState.logX(TAG, String.format("getView: itemName = %s", item.firstGet()));
 
 				TextView nameView = (TextView)v.findViewById(R.id.genericContextMenuItemName);
-				nameView.setText(item.primaryNameGet());
+				nameView.setText(item.firstGet());
 				nameView.setTextColor(Background.textColorGet(context));
-				
-				if (item.imageResidGet() > 0) {
-					Bitmap bitmap = ImagesUtils.imageResourceIdToBitmapConvert(context, item.imageResidGet(),
-						null, 0.8f);
-					Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
-					nameView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-				} else {
-					Drawable drawable = ImagesUtils.transparentDefaultDrawableImageGet(context);
-					nameView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, drawable, null);
-				}
 			}
 			
 			return v;

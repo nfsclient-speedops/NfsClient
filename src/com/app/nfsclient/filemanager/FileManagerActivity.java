@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2014 SpeedOps
+ * All rights reserved.
+ *
+ * SpeedOps is not responsible for any use or misuse of this product.
+ * In using this software you agree to hold harmless SpeedOps and any other
+ * contributors to this project from any damages or liabilities which might result 
+ * from its use.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 /* 
  * Copyright (C) 2008 OpenIntents.org
  *
@@ -20,7 +35,6 @@
 
 package com.app.nfsclient.filemanager;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,6 +55,8 @@ import com.app.nfsclient.filemanager.util.MimeTypeParser;
 import com.app.nfsclient.filemanager.util.MimeTypes;
 import com.app.nfsclient.generic.GenericAsyncTask;
 import com.app.nfsclient.generic.GenericDialogContextMenu;
+import com.app.nfsclient.generic.GenericFileInterface;
+import com.app.nfsclient.generic.GenericFileSystem;
 import com.app.nfsclient.generic.GenericIcsSpinner;
 import com.app.nfsclient.generic.GenericListItemList;
 import com.app.nfsclient.generic.GenericSpinnerAdapter;
@@ -156,14 +172,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	// There's a ".nomedia" file here
 	private boolean mNoMedia;
 
-	private File currentDirectory = new File(""); 
+	private GenericFileInterface currentDirectory; 
 
-	private String mSdCardPath = "";
+	private String mFileSystemPath = "";
 
 	private MimeTypes mMimeTypes;
 
 	private String mContextText;
-	private File mContextFile = new File("");
+	private GenericFileInterface mContextFile;
 	private Drawable mContextIcon;
 
 	/** How many steps one can make back using the back key. */
@@ -215,8 +231,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	private TextView mEmptyText;
 	private ProgressBar mProgressBar;
 
+	private GenericFileSystem mFileSystem;
+	private String mFileSystemType;
+	private String mFileSystemId;
+	
 	private DirectoryScanner mDirectoryScanner;
-	private File mPreviousDirectory;
+	private GenericFileInterface mPreviousDirectory;
 	private ThumbnailLoader mThumbnailLoader;
 
 	private MenuItem mExcludeMediaScanMenuItem;
@@ -236,6 +256,16 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	@Override 
 	public void onCreate(Bundle icicle) { 
         super.onCreate(icicle); 
+
+        // get the file system type
+        mFileSystemType = getIntent().getStringExtra(FileManagerIntents.EXTRA_FILE_SYSTEM_TYPE);
+        mFileSystemId = getIntent().getStringExtra(FileManagerIntents.EXTRA_FILE_SYSTEM_ID);
+        AppState.logX(TAG, String.format("onCreate: type = %s, id = %s", mFileSystemType, mFileSystemId));
+        if (mFileSystemType.equalsIgnoreCase(GenericFileSystem.ITEM_TYPE_NFS_SERVER)) {
+        	mFileSystem = AppState.serversGetByHostName(this, mFileSystemId);
+        }
+    	currentDirectory = mFileSystem.fileInstanceGet("");
+    	mContextFile = mFileSystem.fileInstanceGet("");
 
 		mDistribution.setFirst(MENU_DISTRIBUTION_START, DIALOG_DISTRIBUTION_START);
 
@@ -313,10 +343,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		Intent intent = getIntent();
 		String action = intent.getAction();
 
-		File browseto = new File("/");
+		GenericFileInterface browseto = mFileSystem.fileInstanceGet("/");
 
-		if (!TextUtils.isEmpty(mSdCardPath))
-		    browseto = new File(mSdCardPath);
+		if (!TextUtils.isEmpty(mFileSystemPath))
+		    browseto = mFileSystem.fileInstanceGet(mFileSystemPath);
 
 		// Default state
 		mState = STATE_BROWSE;
@@ -386,9 +416,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		}
 
 		// Set current directory and file based on intent data.
-		File file = FileUtils.getFile(intent.getData());
+		GenericFileInterface file = FileUtils.getFile(mFileSystem, intent.getData());
 		if (file != null) {
-			File dir = FileUtils.getPathWithoutFilename(file);
+			GenericFileInterface dir = FileUtils.getPathWithoutFilename(mFileSystem, file);
 			
 			if (dir.isDirectory())
 				browseto = dir;
@@ -434,8 +464,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		}
 		
 		if (icicle != null) {
-			browseto = new File(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
-			mContextFile = new File(icicle.getString(BUNDLE_CONTEXT_FILE));
+			browseto = mFileSystem.fileInstanceGet(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
+			mContextFile = mFileSystem.fileInstanceGet(icicle.getString(BUNDLE_CONTEXT_FILE));
 			mContextText = icicle.getString(BUNDLE_CONTEXT_TEXT);
 
 			boolean show = icicle.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT);
@@ -525,7 +555,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		mProgressBar.setVisibility(View.GONE);
 		mEmptyText.setVisibility(View.VISIBLE);
 
-		mThumbnailLoader = new ThumbnailLoader(currentDirectory, mListFile, currentHandler, this, mMimeTypes);
+		mThumbnailLoader = new ThumbnailLoader(mFileSystem, currentDirectory, mListFile, currentHandler, this, mMimeTypes);
 		mThumbnailLoader.start();
 	}
 
@@ -542,10 +572,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	}
 
 	//private boolean mHaveShownErrorMessage;
-	private File mHaveShownErrorMessageForFile = null;
+	private GenericFileInterface mHaveShownErrorMessageForFile = null;
 
 	private void goToDirectoryInEditText() {
-		File browseto = new File(mEditDirectory.getText().toString());
+		GenericFileInterface browseto = mFileSystem.fileInstanceGet(mEditDirectory.getText().toString());
 
 		if (browseto.equals(currentDirectory)) {
 			showDirectoryInput(false);
@@ -634,11 +664,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	}
 
 	private void pickFileOrDirectory() {
-		File file = null;
+		GenericFileInterface file = null;
 		
 		if (mState == STATE_PICK_FILE) {
 			String filename = mEditFilename.getText().toString();
-			file = FileUtils.getFile(currentDirectory.getAbsolutePath(), filename);
+			file = FileUtils.getFile(mFileSystem, currentDirectory.getAbsolutePath(), filename);
 		} else if (mState == STATE_PICK_DIRECTORY) {
 			file = currentDirectory;
 		}
@@ -695,7 +725,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	 * 
 	 * @param aDirectory
 	 */
-    private void jumpTo(final File aDirectory) {
+    private void jumpTo(final GenericFileInterface aDirectory) {
 		mStepsBack = 0;
 		browseTo(aDirectory);
 	}
@@ -704,7 +734,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	 * Browse to some location by clicking on a list item.
 	 * @param aDirectory
 	 */
-    private void browseTo(final File aDirectory){ 
+    private void browseTo(final GenericFileInterface aDirectory){ 
 		// setTitle(aDirectory.getAbsolutePath());
 
 		if (aDirectory.isDirectory()) {
@@ -729,7 +759,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		} 
 	}
 
-    private void openFile(File aFile) { 
+    private void openFile(GenericFileInterface aFile) { 
 	    if (!aFile.exists()) {
 			Toast.makeText(this, R.string.error_file_does_not_exists, Toast.LENGTH_SHORT).show();
 			return;
@@ -790,8 +820,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		mProgressBar.setVisibility(View.GONE);
 		setListAdapter(null); 
 
-		mDirectoryScanner = new DirectoryScanner(currentDirectory, this, currentHandler, mMimeTypes,
-        mSdCardPath, mWritableOnly, directoriesOnly);
+		mDirectoryScanner = new DirectoryScanner(mFileSystem, currentDirectory, this, currentHandler, mMimeTypes,
+            mFileSystemPath, mWritableOnly, directoriesOnly);
 		mDirectoryScanner.start();
 
 		// Add the "." == "current directory" 
@@ -807,7 +837,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		*/
     } 
 
-	private void selectInList(File selectFile) {
+	private void selectInList(GenericFileInterface selectFile) {
 		String filename = selectFile.getName();
 		IconifiedTextListAdapter la = (IconifiedTextListAdapter) getListAdapter();
 		int count = la.getCount();
@@ -845,7 +875,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		ib.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
 		ib.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				jumpTo(new File("/"));
+				jumpTo(mFileSystem.fileInstanceGet("/"));
 			}
 		});
 		mDirectoryButtons.addView(ib);
@@ -854,14 +884,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		String dir = "";
 		for (int i = 1; i < parts.length; i++) {
 			dir += "/" + parts[i];
-			if (dir.equals(mSdCardPath)) {
+			if (dir.equals(mFileSystemPath)) {
 				// Add SD card button
 				ib = new ImageButton(this);
 				ib.setImageResource(R.drawable.icon_sdcard_small);
 				ib.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
 				ib.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View view) {
-						jumpTo(new File(mSdCardPath));
+						jumpTo(mFileSystem.fileInstanceGet(mFileSystemPath));
 					}
 				});
 				mDirectoryButtons.addView(ib);
@@ -874,7 +904,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 				b.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View view) {
 						String dir = (String) view.getTag();
-						jumpTo(new File(dir));
+						jumpTo(mFileSystem.fileInstanceGet(dir));
 					}
 				});
 				mDirectoryButtons.addView(b);
@@ -950,7 +980,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		  */
 		 String curdir = currentDirectory 
 				 .getAbsolutePath() ;
-		 File clickedFile = FileUtils.getFile(curdir, file);
+		 GenericFileInterface clickedFile = FileUtils.getFile(mFileSystem, curdir, file);
 		 if (clickedFile != null) {
 			 if (clickedFile.isDirectory()) {
 				 // If we click on folders, we can return later by the "back" key.
@@ -964,7 +994,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	 }
 
 	 private void getSdCardPath() {
-		 mSdCardPath = android.os.Environment
+		 mFileSystemPath = android.os.Environment
 				 .getExternalStorageDirectory().getAbsolutePath();
 	 }
 
@@ -983,9 +1013,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
     		 IconifiedText it = (IconifiedText) adapter.getItem(position);
 
     		 items.add(new GenericDialogContextMenu.GenericDialogContextMenuItem(getString(
-    			 R.string.menu_rename), R.drawable.ic_revert));
+    			 R.string.menu_rename)));
     		 items.add(new GenericDialogContextMenu.GenericDialogContextMenuItem(getString(
-			     R.string.menu_delete), R.drawable.ic_trash));
+			     R.string.menu_delete)));
     		 
     		 final GenericDialogContextMenu dialog = new GenericDialogContextMenu(FileManagerActivity.this,
     		     it.getText(), items, null);
@@ -1275,7 +1305,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 	 private void includeInMediaScan() {
 		 // Delete the .nomedia file.
-		 File file = FileUtils.getFile(currentDirectory, NOMEDIA_FILE);
+		 GenericFileInterface file = FileUtils.getFile(mFileSystem, currentDirectory, NOMEDIA_FILE);
 		 if (file.delete()) {
 			 Toast.makeText(this, getString(R.string.media_scan_included), Toast.LENGTH_LONG).show();
 			 mNoMedia = false;
@@ -1287,7 +1317,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 	 private void excludeFromMediaScan() {
 		 // Create the .nomedia file.
-		 File file = FileUtils.getFile(currentDirectory, NOMEDIA_FILE);
+		 GenericFileInterface file = FileUtils.getFile(mFileSystem, currentDirectory, NOMEDIA_FILE);
 		 try {
 			 if (file.createNewFile()) {
 				 mNoMedia = true;
@@ -1356,7 +1386,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 	 private void createNewFolder(String foldername) {
 		 if (!TextUtils.isEmpty(foldername)) {
-			 File file = FileUtils.getFile(currentDirectory, foldername);
+			 GenericFileInterface file = FileUtils.getFile(mFileSystem, currentDirectory, foldername);
 			 if (file.mkdirs()) {
 
 				 // Change into new directory:
@@ -1371,9 +1401,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	  *  @params toastOnError If set to true, this function will toast if an error occurs.
 	  *  @returns true if successful, false otherwise.
 	  */
-	 private boolean recursiveDelete(File file, boolean toastOnError) {
+	 private boolean recursiveDelete(GenericFileInterface file, boolean toastOnError) {
 		 // Recursively delete all contents.
-		 File[] files = file.listFiles();
+		 GenericFileInterface[] files = file.listFiles();
 
 		 if (files == null) {
 			 Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
@@ -1381,7 +1411,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 }
 
 		 for (int x=0; x<files.length; x++) {
-			 File childFile = files[x];
+			 GenericFileInterface childFile = files[x];
 			 if (childFile.isDirectory()) {
 				 if (!recursiveDelete(childFile, toastOnError)) {
 					 return false;
@@ -1410,16 +1440,16 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 private static final int err_deleting_child_file = 2;
 		 private static final int err_deleting_file = 3;
 
-		 private File errorFile;
+		 private GenericFileInterface errorFile;
 
 		 /**
 		  * Recursively delete a file or directory and all of its children.
 		  * 
 		  * @returns 0 if successful, error value otherwise.
 		  */
-		 private int recursiveDelete(File file) {
+		 private int recursiveDelete(GenericFileInterface file) {
 			 if (file.isDirectory() && file.listFiles() != null)
-				 for (File childFile : file.listFiles()) {
+				 for (GenericFileInterface childFile : file.listFiles()) {
 					 if (childFile.isDirectory()) {
 						 int result = recursiveDelete(childFile);
 						 if (result > 0) {
@@ -1452,13 +1482,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 			 Object files = params[0];
 
 			 if (files instanceof List<?>) {
-				 for (File file: (List<File>)files) {
+				 for (GenericFileInterface file: (List<GenericFileInterface>)files) {
 					 int result = recursiveDelete(file);
 					 if (result != success) return result;
 				 }
 				 return success;
 			 } else
-				 return recursiveDelete((File)files);
+				 return recursiveDelete((GenericFileInterface)files);
 
 		 }
 
@@ -1486,7 +1516,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 	 }
 
-	 private void deleteFileOrFolder(File file) {
+	 private void deleteFileOrFolder(GenericFileInterface file) {
 
 		 new RecursiveDeleteTask().executeOnExecutor(GenericAsyncTask.THREAD_POOL_EXECUTOR, file);
 		 //		if (file.isDirectory()) {
@@ -1507,13 +1537,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 	 private void deleteMultiFile() {
 		 //        int toast = 0;
-		 LinkedList<File> files = new LinkedList<File>();
+		 LinkedList<GenericFileInterface> files = new LinkedList<GenericFileInterface>();
 		 for (IconifiedText it : mDirectoryEntries) {
 			 if (!it.isSelected()) {
 				 continue;
 			 }
 
-			 File file = FileUtils.getFile(currentDirectory, it.getText());
+			 GenericFileInterface file = FileUtils.getFile(mFileSystem, currentDirectory, it.getText());
 			 files.add(file);
 			 //            if (file.isDirectory()) {
 			 //                if (!recursiveDelete(file, true)) {
@@ -1538,14 +1568,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 //        Toast.makeText(FileManagerActivity.this, toast, Toast.LENGTH_SHORT).show();
 	 }
 
-	 private void renameFileOrFolder(File file, String newFileName) {
+	 private void renameFileOrFolder(GenericFileInterface file, String newFileName) {
 
 		 if (newFileName != null && newFileName.length() > 0){
 			 if (newFileName.lastIndexOf('.') < 0){				
 				 newFileName += FileUtils.getExtension(file.getName()); 
 			 }
 		 }
-		 File newFile = FileUtils.getFile(currentDirectory, newFileName);
+		 GenericFileInterface newFile = FileUtils.getFile(mFileSystem, currentDirectory, newFileName);
 
 		 rename(file, newFile);
 	 }
@@ -1554,7 +1584,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	  * @param oldFile
 	  * @param newFile
 	  */
-	 private void rename(File oldFile, File newFile) {
+	 private void rename(GenericFileInterface oldFile, GenericFileInterface newFile) {
 		 int toast = 0;
 		 if (oldFile.renameTo(newFile)) {
 			 // Rename was successful.
@@ -1583,9 +1613,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	  *     create a unique file if necessary.
 	  * 
 	  */
-	 private File createUniqueCopyName(Context context, File path, String fileName) {
+	 private GenericFileInterface createUniqueCopyName(Context context, GenericFileInterface path, String fileName) {
 		 // Does that file exist?
-		 File file = FileUtils.getFile(path, fileName);
+		 GenericFileInterface file = FileUtils.getFile(mFileSystem, path, fileName);
 
 		 if (!file.exists()) {
 			 // Nope - we can take that.
@@ -1601,7 +1631,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 }
 
 		 // Try a simple "copy of".
-		 file = FileUtils.getFile(path, context.getString(R.string.copied_file_name, fileName).concat(extension));
+		 file = FileUtils.getFile(mFileSystem, path, context.getString(R.string.copied_file_name, fileName).concat(extension));
 
 		 if (!file.exists()) {
 			 // Nope - we can take that.
@@ -1612,7 +1642,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 		 // Well, we gotta find a unique name at some point.
 		 while (copyIndex < 500) {
-			 file = FileUtils.getFile(path, context.getString(R.string.copied_file_name_2, copyIndex, fileName).concat(extension));
+			 file = FileUtils.getFile(mFileSystem, path, context.getString(R.string.copied_file_name_2, copyIndex, fileName).concat(extension));
 
 			 if (!file.exists()) {
 				 // Nope - we can take that.
@@ -1626,10 +1656,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 return null;
 	 }
 
-	 private boolean copy(File oldFile, File newFile) {
+	 private boolean copy(GenericFileInterface oldFile, GenericFileInterface newFile) {
 		 try {
-			 FileInputStream input = new FileInputStream(oldFile);
-			 FileOutputStream output = new FileOutputStream(newFile);
+			 FileInputStream input = new FileInputStream(oldFile.getNativeFile());
+			 FileOutputStream output = new FileOutputStream(newFile.getNativeFile());
 
 			 byte[] buffer = new byte[COPY_BUFFER_SIZE];
 
@@ -1652,7 +1682,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 return true;
 	 }
 
-	 private void sendFile(File file) {
+	 private void sendFile(GenericFileInterface file) {
 
 		 String filename = file.getName();
 		 String content = "hh";
@@ -1733,12 +1763,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 case REQUEST_CODE_MOVE:
 			 if (resultCode == RESULT_OK && data != null) {
 				 // obtain the filename
-				 File movefrom = mContextFile;
-				 File moveto = FileUtils.getFile(data.getData());
+				 GenericFileInterface movefrom = mContextFile;
+				 GenericFileInterface moveto = FileUtils.getFile(mFileSystem, data.getData());
 				 if (moveto != null) {
 					 if (mState != STATE_MULTI_SELECT) {
 						 // Move single file.
-						 moveto = FileUtils.getFile(moveto, movefrom.getName());
+						 moveto = FileUtils.getFile(mFileSystem, moveto, movefrom.getName());
 						 int toast = 0;
 						 if (movefrom.renameTo(moveto)) {
 							 // Move was successful.
@@ -1764,8 +1794,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 								 continue;
 							 }
 
-							 movefrom = FileUtils.getFile(currentDirectory, it.getText());
-							 File newPath = FileUtils.getFile(moveto, movefrom.getName());
+							 movefrom = FileUtils.getFile(mFileSystem, currentDirectory, it.getText());
+							 GenericFileInterface newPath = FileUtils.getFile(mFileSystem, moveto, movefrom.getName());
 							 if (!movefrom.renameTo(newPath)) {
 								 refreshList();
 								 if (moveto.isDirectory()) {
@@ -1798,8 +1828,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		 case REQUEST_CODE_COPY:
 			 if (resultCode == RESULT_OK && data != null) {
 				 // obtain the filename
-				 File copyfrom = mContextFile;
-				 File copyto = FileUtils.getFile(data.getData());
+				 GenericFileInterface copyfrom = mContextFile;
+				 GenericFileInterface copyto = FileUtils.getFile(mFileSystem, data.getData());
 				 if (copyto != null) {
 					 if (mState != STATE_MULTI_SELECT) {
 						 // Copy single file.
@@ -1823,8 +1853,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 								 continue;
 							 }
 
-							 copyfrom = FileUtils.getFile(currentDirectory, it.getText());
-							 File newPath = createUniqueCopyName(this, copyto, copyfrom.getName());
+							 copyfrom = FileUtils.getFile(mFileSystem, currentDirectory, it.getText());
+							 GenericFileInterface newPath = createUniqueCopyName(this, copyto, copyfrom.getName());
 							 if (copyto != null) {
 								 if (!copy(copyfrom, newPath)) {
 									 toast = R.string.error_copying_file;
